@@ -5,14 +5,29 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>Gestao_de_Estacionamentos.WebApi</RootNamespace>
+    <UserSecretsId>143e6456-cc46-4fb2-8938-dd6e8e3767a3</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.19" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.19">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.22.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Controllers\" />
+    <Folder Include="Identity\" />
+    <Folder Include="Models\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\core\aplicacao\Gestao-de-Estacionamentos.Core.Aplicacao.csproj" />
+    <ProjectReference Include="..\core\dominio\Gestao-de-Estacionamentos.Core.Dominio.csproj" />
+    <ProjectReference Include="..\infraestrutura\orm\Gestao-de-Estacionamentos.Infraestutura.Orm.csproj" />
   </ItemGroup>
 
 </Project>

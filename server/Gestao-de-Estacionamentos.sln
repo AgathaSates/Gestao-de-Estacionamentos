@@ -23,6 +23,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gestao-de-Estacionamentos.T
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gestao-de-Estacionamentos.Testes.Unidade", "testes\unidade\Gestao-de-Estacionamentos.Testes.Unidade.csproj", "{7D4FFDCC-AD90-D235-50D6-044C9F73D25F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5.Utilidade", "5.Utilidade", "{242380B7-5A20-4937-A507-AD00E29AD150}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gestao-de-Estacionamento.Util.TokenGenerator", "util\token-generator\Gestao-de-Estacionamento.Util.TokenGenerator.csproj", "{90E678AD-BC8E-A78C-AED9-7D970D896C9A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +57,10 @@ Global
 		{7D4FFDCC-AD90-D235-50D6-044C9F73D25F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D4FFDCC-AD90-D235-50D6-044C9F73D25F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D4FFDCC-AD90-D235-50D6-044C9F73D25F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90E678AD-BC8E-A78C-AED9-7D970D896C9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90E678AD-BC8E-A78C-AED9-7D970D896C9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90E678AD-BC8E-A78C-AED9-7D970D896C9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90E678AD-BC8E-A78C-AED9-7D970D896C9A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -64,6 +72,7 @@ Global
 		{9759D590-7978-471D-86C4-631D4B6E4BFD} = {57AC6FB8-8FB9-487C-863E-4FE96D70D321}
 		{DFC32690-052C-EC6D-5AF5-CCE4D6AD55E3} = {5CE3EC41-8DAA-4005-BBE7-3E78CE3ACBFE}
 		{7D4FFDCC-AD90-D235-50D6-044C9F73D25F} = {5CE3EC41-8DAA-4005-BBE7-3E78CE3ACBFE}
+		{90E678AD-BC8E-A78C-AED9-7D970D896C9A} = {242380B7-5A20-4937-A507-AD00E29AD150}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3F99F155-CF1C-4D37-9BDD-7E1FF90F5516}
