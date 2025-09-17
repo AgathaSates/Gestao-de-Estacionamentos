@@ -18,7 +18,7 @@ public class Ticket : EntidadeBase<Ticket>
 
     [ExcludeFromCodeCoverage]
     public Ticket() { }
-
+   
     public Ticket(DateTime dataHoraEntrada) : this()
     {
         Id = Guid.NewGuid();
