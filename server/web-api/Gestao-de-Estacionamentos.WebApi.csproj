@@ -19,15 +19,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-    <Folder Include="Identity\" />
-    <Folder Include="Models\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\core\aplicacao\Gestao-de-Estacionamentos.Core.Aplicacao.csproj" />
     <ProjectReference Include="..\core\dominio\Gestao-de-Estacionamentos.Core.Dominio.csproj" />
     <ProjectReference Include="..\infraestrutura\orm\Gestao-de-Estacionamentos.Infraestutura.Orm.csproj" />
+    <ProjectReference Include="..\util\token-generator\Gestao-de-Estacionamento.Util.TokenGenerator.csproj" />
   </ItemGroup>
 
 </Project>

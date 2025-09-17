@@ -1,5 +1,8 @@
 ﻿using DotNet.Testcontainers.Containers;
 using FizzWare.NBuilder;
+using Gestao_de_Estacionamentos.Core.Dominio.ModuloRecepcao;
+using Gestao_de_Estacionamentos.Infraestutura.Orm.Compartilhado;
+using Gestao_de_Estacionamentos.Infraestutura.Orm.ModuloRecepcao;
 using Testcontainers.PostgreSql;
 
 namespace Gestao_de_Estacionamentos.Testes.Integracao.Compartilhado;
@@ -7,10 +10,12 @@ namespace Gestao_de_Estacionamentos.Testes.Integracao.Compartilhado;
 [TestClass]
 public abstract class TestFixture
 {
-    // colocar dbcontext
-    // colocar repositorios
+    protected AppDbContext? _dbContext;
+    
+    protected RepositorioRecepcaoEmOrm? _repositorioRecepcao;
 
-    private static IDatabaseContainer? _container;
+
+    protected static IDatabaseContainer? _container;
 
     [AssemblyInitialize]
     public static async Task Setup(TestContext _)
@@ -39,14 +44,32 @@ public abstract class TestFixture
         if (_container is null)
             throw new ArgumentNullException("O banco de dados não foi inicializado.");
 
-        // Configurar dbcontext e repositorios
+        _dbContext = AppDbContextFactory.CriarDbContext(_container.GetConnectionString());
+
+        ConfigurarTabelas(_dbContext);
+
+        _repositorioRecepcao = new RepositorioRecepcaoEmOrm(_dbContext);
+
+        BuilderSetup.SetCreatePersistenceMethod<CheckIn>(async (CheckIn novoRegistro) =>
+        {
+              await _repositorioRecepcao.CadastrarAsync(novoRegistro);
+        });
+
+        BuilderSetup.SetCreatePersistenceMethod<List<CheckIn>>(async (List<CheckIn> novosRegistros) =>
+        {
+              await _repositorioRecepcao.CadastrarEntidadesAsync(novosRegistros);
+        });
     }
 
-    private static void ConfigurarTabelas()// passar de parametro o dbcontext
+    private static void ConfigurarTabelas(AppDbContext dbContext)
     {
-        // criar tabelas 
-        // remover dados das tabelas
-        // salvar mudanças
+        dbContext.Database.EnsureCreated();
+    
+        dbContext.CheckIns.RemoveRange(dbContext.CheckIns);
+        dbContext.Veiculos.RemoveRange(dbContext.Veiculos);
+        dbContext.Tickets.RemoveRange(dbContext.Tickets);
+
+        dbContext.SaveChanges();
     }
 
     private static async Task InicializarBancoDadosAsync(IDatabaseContainer container)

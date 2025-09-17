@@ -2,6 +2,9 @@ using System.Text.Json.Serialization;
 using Gestao_de_Estacionamentos.Core.Aplicacao;
 using Gestao_de_Estacionamentos.WebApi.AutoMapper;
 using Gestao_de_Estacionamentos.WebApi.Swagger;
+using Gestao_de_Estacionamentos.Infraestutura.Orm;
+using Gestao_de_Estacionamentos.WebApi.Identity;
+using Gestao_de_Estacionamentos.WebApi.Orm;
 
 namespace Gestao_de_Estacionamentos.WebApi
 {
@@ -12,24 +15,25 @@ namespace Gestao_de_Estacionamentos.WebApi
             var builder = WebApplication.CreateBuilder(args);
 
             builder.Services
-                    .AddCamadaAplicacao(builder.Logging, builder.Configuration);
-                    //.AddCamadaInfraestruturaOrm(builder.Configuration);
+                    .AddCamadaAplicacao(builder.Logging, builder.Configuration)
+                    .AddCamadaInfraestruturaOrm(builder.Configuration);
 
             builder.Services.AddAutoMapperProfiles(builder.Configuration);
 
-            //builder.Services.AddIdentityProviderConfig(builder.Configuration);
+            builder.Services.AddIdentityProviderConfig(builder.Configuration);
 
             builder.Services
                 .AddControllers()
                 .AddJsonOptions(options =>
                     options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
+
             builder.Services.AddSwaggerConfig();
 
             var app = builder.Build();
 
             if (app.Environment.IsDevelopment())
             {
-                //app.ApplyMigrations();
+                app.ApplyMigrations();
 
                 app.UseSwagger();
                 app.UseSwaggerUI();

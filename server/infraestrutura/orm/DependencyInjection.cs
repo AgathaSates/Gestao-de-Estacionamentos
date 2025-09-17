@@ -1,5 +1,7 @@
 ﻿using Gestao_de_Estacionamentos.Core.Dominio.Compartilhado;
+using Gestao_de_Estacionamentos.Core.Dominio.ModuloRecepcao;
 using Gestao_de_Estacionamentos.Infraestutura.Orm.Compartilhado;
+using Gestao_de_Estacionamentos.Infraestutura.Orm.ModuloRecepcao;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -9,7 +11,7 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddCamadaInfraestruturaOrm(this IServiceCollection services, IConfiguration configuration)
     {
-        //services.AddScoped<IRepositorioContato, RepositorioContatoEmOrm>();
+        services.AddScoped<IRepositorioRecepcao, RepositorioRecepcaoEmOrm>();
 
         services.AddEntityFrameworkConfig(configuration);
 
@@ -26,7 +28,7 @@ public static class DependencyInjection
         if (string.IsNullOrWhiteSpace(connectionString))
             throw new Exception("A variável SQL_CONNECTION_STRING não foi fornecida.");
 
-        //services.AddDbContext<IUnitOfWork, AppDbContext>(options =>
-        //    options.UseNpgsql(connectionString, (opt) => opt.EnableRetryOnFailure(3)));
+        services.AddDbContext<IUnitOfWork, AppDbContext>(options =>
+            options.UseNpgsql(connectionString, (opt) => opt.EnableRetryOnFailure(3)));
     }
 }

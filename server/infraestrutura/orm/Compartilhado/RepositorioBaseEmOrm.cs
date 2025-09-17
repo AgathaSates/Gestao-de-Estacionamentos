@@ -12,12 +12,12 @@ public class RepositorioBaseEmOrm<T> where T : EntidadeBase<T>
         registros = contexto.Set<T>();
     }
 
-    public async Task CadastrarAsync(T novoRegistro)
+    public virtual async Task CadastrarAsync(T novoRegistro)
     {
         await registros.AddAsync(novoRegistro);
     }
 
-    public async Task CadastrarEntidades(IList<T> entidades)
+    public async Task CadastrarEntidadesAsync(IList<T> entidades)
     {
         await registros.AddRangeAsync(entidades);
     }
