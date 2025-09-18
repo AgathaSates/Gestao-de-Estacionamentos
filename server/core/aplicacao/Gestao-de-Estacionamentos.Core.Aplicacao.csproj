@@ -20,8 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="AutoMapper\" />
-    <Folder Include="FluentValidation\" />
+    <ProjectReference Include="..\dominio\Gestao-de-Estacionamentos.Core.Dominio.csproj" />
   </ItemGroup>
 
 </Project>
