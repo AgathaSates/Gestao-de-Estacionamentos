@@ -24,4 +24,8 @@
     <Folder Include="FluentValidation\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\dominio\Gestao-de-Estacionamentos.Core.Dominio.csproj" />
+  </ItemGroup>
+
 </Project>
