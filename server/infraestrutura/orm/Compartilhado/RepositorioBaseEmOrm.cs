@@ -17,21 +17,21 @@ public class RepositorioBaseEmOrm<T> where T : EntidadeBase<T>
         await registros.AddAsync(novoRegistro);
     }
 
-    public async Task CadastrarEntidadesAsync(IList<T> entidades)
+    public virtual async Task CadastrarEntidadesAsync(IList<T> entidades)
     {
         await registros.AddRangeAsync(entidades);
     }
 
-    public async Task<bool> EditarAsync(Guid idRegistro, T registroEditado)
+    public virtual async Task<T> EditarAsync(Guid idRegistro, T registroEditado)
     {
         var registroSelecionado = await SelecionarRegistroPorIdAsync(idRegistro);
 
         if (registroSelecionado is null)
-            return false;
+            return null!;
 
         registroSelecionado.AtualizarRegistro(registroEditado);
 
-        return true;
+        return registroSelecionado;
     }
 
     public async Task<bool> ExcluirAsync(Guid idRegistro)
