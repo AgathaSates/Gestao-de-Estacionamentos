@@ -3,7 +3,7 @@ using FluentResults;
 using FluentValidation;
 using Gestao_de_Estacionamentos.Core.Aplicacao.ModuloRecepcao.Commands;
 using Gestao_de_Estacionamentos.Core.Dominio.Compartilhado;
-using Gestao_de_Estacionamentos.Core.Dominio.ModuloAutenticacao;
+using Gestao_de_Estacionamentos.Core.Dominio.ModuloFaturamento;
 using Gestao_de_Estacionamentos.Core.Dominio.ModuloRecepcao;
 using MediatR;
 using Microsoft.Extensions.Caching.Distributed;
