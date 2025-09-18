@@ -21,10 +21,12 @@ namespace Gestao_de_Estacionamentos.Core.Dominio.ModuloFaturamento
         {
             DataInicial = dataInicial;
             DataFinal = dataFinal;
-            Faturas = faturas;            
+            Faturas = faturas;
+            
+            GerarValorTotal();
         }
 
-        public void GerarRelatorio()
+        public void GerarValorTotal()
         {
             ValorTotal = Faturas.Sum(f => f.Valortotal);
         }
