@@ -1,9 +1,15 @@
-﻿namespace Gestao_de_Estacionamento.Util.TokenGenerator;
+﻿using System.Security.Cryptography;
+
+namespace Gestao_de_Estacionamento.Util.TokenGenerator;
 
 internal class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello, World!");
+        var chave = Convert.ToBase64String(RandomNumberGenerator.GetBytes(32));
+
+        Console.Write("Chave de 32 bytes: " + chave);
+
+        Console.Read();
     }
 }
