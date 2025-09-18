@@ -1,5 +1,5 @@
 ﻿using System.Security.Claims;
-using eAgenda.Core.Dominio.ModuloAutenticacao;
+using Gestao_de_Estacionamentos.Core.Dominio.ModuloFaturamento;
 
 namespace Gestao_de_Estacionamentos.WebApi.Identity;
 
