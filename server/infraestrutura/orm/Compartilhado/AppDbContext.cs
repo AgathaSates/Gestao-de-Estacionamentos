@@ -1,5 +1,6 @@
 ﻿using Gestao_de_Estacionamentos.Core.Dominio.Compartilhado;
 using Gestao_de_Estacionamentos.Core.Dominio.ModuloAutenticacao;
+using Gestao_de_Estacionamentos.Core.Dominio.ModuloFaturamento;
 using Gestao_de_Estacionamentos.Core.Dominio.ModuloRecepcao;
 using Gestao_de_Estacionamentos.Core.Dominio.ModuloRecepcao.EntidadeTicket;
 using Gestao_de_Estacionamentos.Core.Dominio.ModuloRecepcao.EntidadeVeiculo;
@@ -13,6 +14,8 @@ public class AppDbContext(DbContextOptions options) : IdentityDbContext<Usuario,
     public DbSet<Veiculo> Veiculos { get; set; }
     public DbSet<Ticket> Tickets { get; set; }
     public DbSet<CheckIn> CheckIns { get; set; }
+    public DbSet<Fatura> Faturas { get; set; } 
+    public DbSet<Relatorio> Relatorio { get; set; }  
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
