@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace eAgenda.Core.Dominio.ModuloAutenticacao;
+namespace Gestao_de_Estacionamentos.Core.Dominio.ModuloFaturamento;
 
 public class Usuario : IdentityUser<Guid>
 {

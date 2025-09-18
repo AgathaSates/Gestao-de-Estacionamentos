@@ -1,4 +1,4 @@
-﻿namespace eAgenda.Core.Dominio.ModuloAutenticacao;
+﻿namespace Gestao_de_Estacionamentos.Core.Dominio.ModuloFaturamento;
 
 public interface ITenantProvider
 {

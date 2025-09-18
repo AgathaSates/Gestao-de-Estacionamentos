@@ -1,5 +1,5 @@
-﻿using Gestao_de_Estacionamentos.Core.Dominio.Compartilhado;
-using Gestao_de_Estacionamentos.Core.Dominio.ModuloAutenticacao;
+﻿using eAgenda.Core.Dominio.ModuloAutenticacao;
+using Gestao_de_Estacionamentos.Core.Dominio.Compartilhado;
 using Gestao_de_Estacionamentos.Core.Dominio.ModuloFaturamento;
 using Gestao_de_Estacionamentos.Core.Dominio.ModuloRecepcao;
 using Gestao_de_Estacionamentos.Core.Dominio.ModuloRecepcao.EntidadeTicket;
