@@ -35,6 +35,5 @@ public class CheckIn : EntidadeBase<CheckIn>
         Veiculo.Observacoes = registroEditado.Veiculo.Observacoes;
         CPF = registroEditado.CPF;
         Nome = registroEditado.Nome;
-        Ticket = Ticket;
     }
 }
