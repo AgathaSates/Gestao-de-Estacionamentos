@@ -1,7 +1,6 @@
 ﻿using Gestao_de_Estacionamentos.Core.Dominio.ModuloRecepcao;
 using Gestao_de_Estacionamentos.Core.Dominio.ModuloRecepcao.EntidadeTicket;
 using Gestao_de_Estacionamentos.Infraestutura.Orm.Compartilhado;
-using Gestao_de_Estacionamentos.Infraestutura.Orm.Migrations;
 using Microsoft.EntityFrameworkCore;
 
 namespace Gestao_de_Estacionamentos.Infraestutura.Orm.ModuloRecepcao;
@@ -9,20 +8,33 @@ namespace Gestao_de_Estacionamentos.Infraestutura.Orm.ModuloRecepcao;
 public class RepositorioRecepcaoEmOrm(AppDbContext context)
     : RepositorioBaseEmOrm<CheckIn>(context), IRepositorioRecepcao
 {
-    public override Task CadastrarAsync(CheckIn novoRegistro)
+    public override async Task CadastrarAsync(CheckIn novoRegistro)
     {
-        var novoticket = new Ticket(DateTime.UtcNow);
+        var novoTicket = new Ticket(DateTime.UtcNow);
 
-        novoRegistro.AdicionarTicket(novoticket);
-        novoticket.AdicionarCheckIn(novoRegistro);
+        novoRegistro.AdicionarTicket(novoTicket);
+        novoTicket.AdicionarCheckIn(novoRegistro);
         novoRegistro.Veiculo.AdicionarCheckIn(novoRegistro);
 
-        return base.CadastrarAsync(novoRegistro);
+        await registros.AddAsync(novoRegistro);
     }
-    
-    public override Task<CheckIn?> SelecionarRegistroPorIdAsync(Guid idRegistro)
+
+    public override async Task CadastrarEntidadesAsync(IList<CheckIn> checkIns)
     {
-        return registros
+        foreach (var entidade in checkIns)
+        {
+            var novoTicket = new Ticket(DateTime.UtcNow);
+            entidade.AdicionarTicket(novoTicket);
+            novoTicket.AdicionarCheckIn(entidade);
+            entidade.Veiculo.AdicionarCheckIn(entidade);
+        }
+
+        await registros.AddRangeAsync(checkIns);
+    }
+
+    public override async Task<CheckIn?> SelecionarRegistroPorIdAsync(Guid idRegistro)
+    {
+        return await registros
             .IgnoreQueryFilters()
             .Include(c => c.Veiculo)
             .Include(c => c.Ticket)
@@ -30,9 +42,9 @@ public class RepositorioRecepcaoEmOrm(AppDbContext context)
             .FirstOrDefaultAsync(x => x.Id.Equals(idRegistro));
     }
 
-    public override Task<List<CheckIn>> SelecionarRegistrosAsync()
+    public override async Task<List<CheckIn>> SelecionarRegistrosAsync()
     {
-        return registros
+        return await registros
             .IgnoreQueryFilters()
             .Include(c => c.Veiculo)
             .Include(c => c.Ticket)
