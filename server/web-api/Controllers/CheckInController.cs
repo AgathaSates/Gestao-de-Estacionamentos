@@ -4,6 +4,7 @@ using Gestao_de_Estacionamentos.Core.Aplicacao.ModuloRecepcao.Commands;
 using Gestao_de_Estacionamentos.WebApi.Models.ModuloRecepcao;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace Gestao_de_Estacionamentos.WebApi.Controllers;
 
@@ -12,6 +13,10 @@ namespace Gestao_de_Estacionamentos.WebApi.Controllers;
 public class CheckInController(IMediator mediator, IMapper mapper) : ControllerBase
 {
     [HttpPost]
+    [SwaggerOperation(
+        Summary = "Cadastrar Check-In",
+        Description = "Cria um novo check-in."
+    )]
     public async Task<ActionResult<CadastrarCheckInResponse>> Cadastrar(CadastrarCheckInRequest request)
     {
         var command = mapper.Map<CadastrarCheckInCommand>(request);
@@ -38,6 +43,10 @@ public class CheckInController(IMediator mediator, IMapper mapper) : ControllerB
     }
 
     [HttpPut("{id:guid}")]
+    [SwaggerOperation(
+        Summary = "Editar Check-In",
+        Description = "Atualiza os dados de um check-in existente."
+    )]
     public async Task<ActionResult<EditarCheckInResponse>> Editar(Guid id, EditarCheckInRequest request)
     {
         var command = mapper.Map<(Guid, EditarCheckInRequest), EditarCheckInCommand>((id, request));
@@ -52,7 +61,11 @@ public class CheckInController(IMediator mediator, IMapper mapper) : ControllerB
         return Ok(respose);
     }
 
-    [HttpGet]
+    [HttpGet("{id:guid}")]
+    [SwaggerOperation(
+        Summary = "Selecionar por id",
+        Description = "Retorna um check-in pelo id."
+    )]
     public async Task<ActionResult<SelecionarCheckInPorIdResponse>> SelecionarCheckInPorId(Guid id)
     {
         var query = mapper.Map<SelecionarCheckInPorIdQuery>(id);
@@ -68,6 +81,10 @@ public class CheckInController(IMediator mediator, IMapper mapper) : ControllerB
     }
 
     [HttpGet]
+    [SwaggerOperation(
+        Summary = "Selecionar todos",
+        Description = "Retorna todos os check-ins (com quantidadee se aplicável)."
+    )]
     public async Task<ActionResult<SelecionarChecInsResponse>> SelecionarCheckIns(
         [FromQuery] SelecionarChecInsRequest? request, CancellationToken cancellationToken)
     {
