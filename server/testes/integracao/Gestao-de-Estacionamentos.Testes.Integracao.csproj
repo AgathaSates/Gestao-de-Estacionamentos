@@ -18,6 +18,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\core\aplicacao\Gestao-de-Estacionamentos.Core.Aplicacao.csproj" />
+    <ProjectReference Include="..\..\core\dominio\Gestao-de-Estacionamentos.Core.Dominio.csproj" />
+    <ProjectReference Include="..\..\infraestrutura\orm\Gestao-de-Estacionamentos.Infraestutura.Orm.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Using Include="Microsoft.VisualStudio.TestTools.UnitTesting" />
   </ItemGroup>
 
