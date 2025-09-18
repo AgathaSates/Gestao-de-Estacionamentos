@@ -51,4 +51,15 @@ public class RepositorioRecepcaoEmOrm(AppDbContext context)
             .OrderBy(c => c.Veiculo.Placa)
             .ToListAsync();
     }
+
+    public override async Task<List<CheckIn>> SelecionarRegistrosAsync(int quantidade)
+    {
+        return await registros
+            .IgnoreQueryFilters()
+            .Include(c => c.Veiculo)
+            .Include(c => c.Ticket)
+            .OrderBy(c => c.Veiculo.Placa)
+            .Take(quantidade)
+            .ToListAsync();
+    }
 }
