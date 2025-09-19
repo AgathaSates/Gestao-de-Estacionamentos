@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\core\dominio\Gestao-de-Estacionamentos.Core.Dominio.csproj" />
+    <ProjectReference Include="..\..\Gestao-de-Estacionamento.Infraestrutura.Conf\Gestao-de-Estacionamento.Infraestrutura.Conf.csproj" />
   </ItemGroup>
 
 </Project>
