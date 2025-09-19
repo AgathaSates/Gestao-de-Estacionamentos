@@ -12,10 +12,11 @@ namespace Gestao_de_Estacionamentos.WebApi.Controllers;
 [Route("api/checkIn")]
 public class CheckInController(IMediator mediator, IMapper mapper) : ControllerBase
 {
-    [HttpPost]
+    [HttpPost("cadastrar")]
     [SwaggerOperation(
         Summary = "Cadastrar Check-In",
-        Description = "Cria um novo check-in."
+        Description = "Cria um novo check-in.",
+        Tags = new[] { "Check-ins" }
     )]
     public async Task<ActionResult<CadastrarCheckInResponse>> Cadastrar(CadastrarCheckInRequest request)
     {
@@ -45,7 +46,8 @@ public class CheckInController(IMediator mediator, IMapper mapper) : ControllerB
     [HttpPut("{id:guid}")]
     [SwaggerOperation(
         Summary = "Editar Check-In",
-        Description = "Atualiza os dados de um check-in existente."
+        Description = "Atualiza os dados de um check-in existente.",
+        Tags = new[] { "Check-ins" }
     )]
     public async Task<ActionResult<EditarCheckInResponse>> Editar(Guid id, EditarCheckInRequest request)
     {
@@ -64,7 +66,8 @@ public class CheckInController(IMediator mediator, IMapper mapper) : ControllerB
     [HttpGet("{id:guid}")]
     [SwaggerOperation(
         Summary = "Selecionar por id",
-        Description = "Retorna um check-in pelo id."
+        Description = "Retorna um check-in pelo id.",
+        Tags = new[] { "Check-ins" }
     )]
     public async Task<ActionResult<SelecionarCheckInPorIdResponse>> SelecionarCheckInPorId(Guid id)
     {
@@ -80,13 +83,14 @@ public class CheckInController(IMediator mediator, IMapper mapper) : ControllerB
         return Ok(response);
     }
 
-    [HttpGet]
+    [HttpGet("listar")]
     [SwaggerOperation(
         Summary = "Selecionar todos",
-        Description = "Retorna todos os check-ins (com quantidadee se aplicável)."
+        Description = "Retorna todos os check-ins (com quantidadee se aplicável).",
+        Tags = new[] { "Check-ins" }
     )]
-    public async Task<ActionResult<SelecionarChecInsResponse>> SelecionarCheckIns(
-        [FromQuery] SelecionarChecInsRequest? request, CancellationToken cancellationToken)
+    public async Task<ActionResult<SelecionarCheckInsResponse>> SelecionarCheckIns(
+        [FromQuery] SelecionarCheckInsRequest? request, CancellationToken cancellationToken)
     {
         var query = mapper.Map<SelecionarCheckInsQuery>(request);
 
@@ -95,8 +99,29 @@ public class CheckInController(IMediator mediator, IMapper mapper) : ControllerB
         if (result.IsFailed)
             return BadRequest();
 
-        var response = mapper.Map<SelecionarChecInsResponse>(result.Value);
+        var response = mapper.Map<SelecionarCheckInsResponse>(result.Value);
 
         return Ok(response);
     }
+
+    [HttpPut("adicionar-observacao/{id:guid}")]
+    [SwaggerOperation(
+        Summary = "Adicionar observação",
+        Description = "Adiciona uma observação ao check-in.",
+        Tags = new[] { "Check-ins" }
+    )]
+    public async Task<ActionResult<AdicionarObservacaoResponse>> AdicionarObservacao(Guid id, AdicionarObservacaoRequest request)
+    {
+        var command = mapper.Map<(Guid, AdicionarObservacaoRequest), AdicionarObservacaoCommand>((id, request));
+
+        var result = await mediator.Send(command);
+
+        if (result.IsFailed)
+            return BadRequest();
+
+        var respose = mapper.Map<AdicionarObservacaoResponse>(result.Value);
+
+        return Ok(respose);
+    }
+
 }
