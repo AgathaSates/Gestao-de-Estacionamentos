@@ -49,7 +49,7 @@ public class EditarCheckInCommandHandler(IRepositorioRecepcao repositorioRecepca
             await unitOfWork.CommitAsync();
 
             // Invalida o cache
-            var cacheKey = $"contatos:u={tenantProvider.UsuarioId.GetValueOrDefault()}:q=all";
+            var cacheKey = $"checkins:u={tenantProvider.UsuarioId.GetValueOrDefault()}:q=all";
 
             await cache.RemoveAsync(cacheKey, cancellationToken);
 

@@ -42,6 +42,7 @@ public class CadastrarCheckInCommandHandler(IRepositorioRecepcao repositorioRece
         // [3] Cadastro
         try
         {
+            // Mapear o comando para a entidade CheckIn e cadastra
             var checkin = mapper.Map<CheckIn>(command);
 
             checkin.UsuarioId = tenantProvider.UsuarioId.GetValueOrDefault();
@@ -51,10 +52,12 @@ public class CadastrarCheckInCommandHandler(IRepositorioRecepcao repositorioRece
             await unitOfWork.CommitAsync();
 
             // Invalida o cache
-            var cacheKey = $"contatos:u={tenantProvider.UsuarioId.GetValueOrDefault()}:q=all";
+            
+            var cacheKey = $"checkins:u={tenantProvider.UsuarioId.GetValueOrDefault()}:q=all";
 
             await cache.RemoveAsync(cacheKey, cancellationToken);
 
+            // Mapeia a entidade para o resultado
             var result = mapper.Map<CadastrarCheckInResult>(checkin);
 
             return Result.Ok(result);

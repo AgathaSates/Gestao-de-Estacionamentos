@@ -31,7 +31,7 @@ namespace Gestao_de_Estacionamentos.WebApi
 
             builder.Services.AddSwaggerGen(c =>
             {
-                c.EnableAnnotations(); // <- importante
+                c.EnableAnnotations();
             });
 
             var app = builder.Build();

@@ -19,7 +19,7 @@ public class SelecionarCheckInsQueryHandler(
         try
         {
             var cacheQuery = query.quantidade.HasValue ? $"q={query.quantidade.Value}" : "q=all";
-            string cacheKey = $"contatos:v=1:scope=global:{cacheQuery}";
+            string cacheKey = $"checkins:v=1:scope=global:{cacheQuery}";
 
             // [1] Tenta acessar o cache
             var jsonString = await cache.GetStringAsync(cacheKey, cancellationToken);
