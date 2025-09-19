@@ -1,5 +1,4 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using System.Security.Cryptography.X509Certificates;
 using Gestao_de_Estacionamentos.Core.Dominio.Compartilhado;
 
 namespace Gestao_de_Estacionamentos.Core.Dominio.ModuloFaturamento
@@ -19,10 +18,10 @@ namespace Gestao_de_Estacionamentos.Core.Dominio.ModuloFaturamento
 
         public Relatorio (DateTime dataInicial, DateTime dataFinal, List<Fatura> faturas)
         {
+            Id = Guid.NewGuid();    
             DataInicial = dataInicial;
             DataFinal = dataFinal;
-            Faturas = faturas;
-            
+            Faturas = faturas;            
             GerarValorTotal();
         }
 
