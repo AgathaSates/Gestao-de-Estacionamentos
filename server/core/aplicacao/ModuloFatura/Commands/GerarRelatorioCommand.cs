@@ -7,9 +7,9 @@ namespace Gestao_de_Estacionamentos.Core.Aplicacao.ModuloFatura.Commands
 
     public record GerarRelatorioResult(RelatorioDto relatorioDto);
 
-    public record RelatorioDto(DateTime dataInicio, 
-        DateTime dataFim, 
-        int totalFaturas, 
+    public record RelatorioDto(
+        DateTime dataInicio,
+        DateTime dataFim,
+        int totalFaturas,
         decimal valorTotalFaturado);
-
 }

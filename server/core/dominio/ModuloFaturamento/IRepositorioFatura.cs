@@ -4,7 +4,7 @@ namespace Gestao_de_Estacionamentos.Core.Dominio.ModuloFaturamento
 {
     public interface IRepositorioFatura : IRepositorio<Fatura>
     {
-       Task<Fatura> ObterFaturaAsync(Guid ticketId);      
-       decimal CalcularValorFatura(int NumeroDiarias, decimal valorDiaria);        
+        decimal CalcularValorFatura(int NumeroDiarias, decimal valorDiaria);
+        Task<List<Fatura>> SelecionarFaturasPorPeriodoAsync(DateTime dataInicio, DateTime dataFim);
     }
 }

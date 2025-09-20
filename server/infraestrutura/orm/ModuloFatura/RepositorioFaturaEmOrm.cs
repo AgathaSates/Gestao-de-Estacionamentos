@@ -9,12 +9,14 @@ namespace Gestao_de_Estacionamentos.Infraestutura.Orm.ModuloFatura
     {
         public decimal CalcularValorFatura(int NumeroDiarias, decimal valorDiaria)
         {
-            return NumeroDiarias * valorDiaria;
-        }           
+            return NumeroDiarias * valorDiaria / 100;
+        }
 
-        public async Task<Fatura?> ObterFaturaAsync(Guid ticketId)
+        public async Task<List<Fatura>> SelecionarFaturasPorPeriodoAsync(DateTime dataInicio, DateTime dataFim)
         {
-            return await registros.FirstOrDefaultAsync(f => f.TicketId.Equals(ticketId));
-        }        
+            return await context.Faturas
+                 .Where(f => f.DataEntrada >= dataInicio && f.DataSaida <= dataFim)
+                 .ToListAsync();
+        }
     }
 }
