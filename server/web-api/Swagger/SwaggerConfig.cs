@@ -10,7 +10,7 @@ public static class SwaggerConfig
 
         services.AddSwaggerGen(options =>
         {
-            options.SwaggerDoc("v1", new OpenApiInfo { Title = "gestao-de-estacionamento API", Version = "v1" });
+            options.SwaggerDoc("v1", new OpenApiInfo { Title = "Gestao-de-Estacionamento API", Version = "v1" });
 
             options.MapType<TimeSpan>(() => new OpenApiSchema
             {
@@ -24,6 +24,13 @@ public static class SwaggerConfig
                 Type = "string",
                 Format = "guid",
                 Example = new Microsoft.OpenApi.Any.OpenApiString("00000000-0000-0000-0000-000000000000")
+            });
+
+            options.MapType<DateTime>(() => new OpenApiSchema
+            {
+                Type = "string",
+                Format = "date-time",
+                Example = new Microsoft.OpenApi.Any.OpenApiString("2025-09-18T00:00:00")
             });
 
             options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
