@@ -3,6 +3,7 @@
 public interface IRepositorio<T> where T : EntidadeBase<T>
 {
     Task CadastrarAsync(T novoRegistro);
+    Task CadastrarEntidadesAsync(IList<T> entidades);
     Task<T> EditarAsync(Guid idRegistro, T registroEditado);
     Task<bool> ExcluirAsync(Guid idRegistro);
     Task<List<T>> SelecionarRegistrosAsync();

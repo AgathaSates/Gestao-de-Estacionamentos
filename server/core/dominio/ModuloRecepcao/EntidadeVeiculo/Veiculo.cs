@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics.CodeAnalysis;
 using Gestao_de_Estacionamentos.Core.Dominio.Compartilhado;
+using Gestao_de_Estacionamentos.Core.Dominio.ModuloEstacionamento;
 using Gestao_de_Estacionamentos.Core.Dominio.ModuloRecepcao.EntidadeTicket;
 
 namespace Gestao_de_Estacionamentos.Core.Dominio.ModuloRecepcao.EntidadeVeiculo;
@@ -12,9 +13,13 @@ public class Veiculo : EntidadeBase<Veiculo>
     public string? Observacoes { get; set; }
     public Guid CheckInId { get; set; }
     public CheckIn CheckIn { get; set; }
+    public Guid? VagaId { get; set; }
+    public Vaga? Vaga { get; set; }
+    public Guid? TicketId { get; set; }
 
     [NotMapped]
-    public Ticket Ticket => CheckIn?.Ticket;
+    public Ticket? Ticket => CheckIn?.Ticket;
+
 
     [ExcludeFromCodeCoverage]
     public Veiculo()  { }
@@ -36,6 +41,13 @@ public class Veiculo : EntidadeBase<Veiculo>
     public void AdicionarCheckIn(CheckIn checkIn)
     {
         CheckIn = checkIn;
+        CheckInId = checkIn.Id;
+    }
+
+    public void AdicionarVaga(Vaga vaga)
+    {
+        Vaga = vaga;
+        VagaId = vaga.Id;
     }
 
     public override void AtualizarRegistro(Veiculo registroEditado)
