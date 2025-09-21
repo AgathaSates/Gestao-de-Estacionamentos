@@ -29,7 +29,16 @@ public class MapeadorVeiculoEmOrm : IEntityTypeConfiguration<Veiculo>
         builder.Property(v => v.CheckInId)
             .IsRequired();
 
+        builder.HasOne(v => v.CheckIn)
+           .WithOne(c => c.Veiculo)
+           .HasForeignKey<Veiculo>(v => v.CheckInId)
+           .OnDelete(DeleteBehavior.Cascade);
+
         builder.HasIndex(v => v.CheckInId)
             .IsUnique();
+
+        builder.Property(v => v.VagaId)
+            .IsRequired(false);
+
     }
 }

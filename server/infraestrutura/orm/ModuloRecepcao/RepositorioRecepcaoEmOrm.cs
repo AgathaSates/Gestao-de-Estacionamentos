@@ -1,5 +1,6 @@
 ﻿using Gestao_de_Estacionamentos.Core.Dominio.ModuloRecepcao;
 using Gestao_de_Estacionamentos.Core.Dominio.ModuloRecepcao.EntidadeTicket;
+using Gestao_de_Estacionamentos.Core.Dominio.ModuloRecepcao.EntidadeVeiculo;
 using Gestao_de_Estacionamentos.Infraestutura.Orm.Compartilhado;
 using Microsoft.EntityFrameworkCore;
 
@@ -61,5 +62,27 @@ public class RepositorioRecepcaoEmOrm(AppDbContext context)
             .OrderBy(c => c.Veiculo.Placa)
             .Take(quantidade)
             .ToListAsync();
+    }
+
+    public async Task<Veiculo?> SelecionarVeiculoPorPlaca(string placa)
+    {
+        return await registros
+            .IgnoreQueryFilters()
+            .Include(c => c.Veiculo)
+            .Include(c => c.Ticket)
+            .Where(c => c.Veiculo.Placa == placa)
+            .Select(c => c.Veiculo)
+            .FirstOrDefaultAsync();
+    }
+
+    public Task<Veiculo?> SelecionarVeiculoPorTicket(int? numeroTicket)
+    {
+        return registros
+            .IgnoreQueryFilters()
+            .Include(c => c.Veiculo)
+            .Include(c => c.Ticket)
+            .Where(c => c.Ticket.NumeroSequencial == numeroTicket)
+            .Select(c => c.Veiculo)
+            .FirstOrDefaultAsync();
     }
 }

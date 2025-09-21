@@ -1,9 +1,11 @@
 ﻿using Gestao_de_Estacionamento.Infraestrutura.Conf;
 using Gestao_de_Estacionamentos.Core.Dominio.Compartilhado;
+using Gestao_de_Estacionamentos.Core.Dominio.ModuloEstacionamento;
 using Gestao_de_Estacionamentos.Core.Dominio.ModuloFatura;
 using Gestao_de_Estacionamentos.Core.Dominio.ModuloFaturamento;
 using Gestao_de_Estacionamentos.Core.Dominio.ModuloRecepcao;
 using Gestao_de_Estacionamentos.Infraestutura.Orm.Compartilhado;
+using Gestao_de_Estacionamentos.Infraestutura.Orm.ModuloEstacionamento;
 using Gestao_de_Estacionamentos.Infraestutura.Orm.ModuloFatura;
 using Gestao_de_Estacionamentos.Infraestutura.Orm.ModuloRecepcao;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +19,7 @@ public static class DependencyInjection
     {
         services.AddScoped<IRepositorioRecepcao, RepositorioRecepcaoEmOrm>();
         services.AddScoped<IRepositorioFatura, RepositorioFaturaEmOrm>();
+        services.AddScoped<IRepositorioEstacionamento, RepositorioEstacionamentoEmOrm>();
         services.AddScoped<IRepositorioRelatorio, RepositorioRelatorioEmOrm>();
         services.AddScoped<IRepositorioConfiguracao, RepositorioConfiguracao>();
 
