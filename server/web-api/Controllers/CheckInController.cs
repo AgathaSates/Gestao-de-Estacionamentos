@@ -3,12 +3,14 @@ using FluentResults;
 using Gestao_de_Estacionamentos.Core.Aplicacao.ModuloRecepcao.Commands;
 using Gestao_de_Estacionamentos.WebApi.Models.ModuloRecepcao;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace Gestao_de_Estacionamentos.WebApi.Controllers;
 
 [ApiController]
+[Authorize]
 [Route("api/checkIn")]
 public class CheckInController(IMediator mediator, IMapper mapper) : ControllerBase
 {

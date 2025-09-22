@@ -5,12 +5,14 @@ using Gestao_de_Estacionamentos.Core.Aplicacao.ModuloEstacionamento.Commands.Vei
 using Gestao_de_Estacionamentos.WebApi.Models.ModuloEstacionamento.Vagas;
 using Gestao_de_Estacionamentos.WebApi.Models.ModuloEstacionamento.Veiculos;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace Gestao_de_Estacionamentos.WebApi.Controllers;
 
 [ApiController]
+[Authorize]
 [Route("api/estacionamento")]
 public class EstacionamentoController(IMediator mediator, IMapper mapper) : ControllerBase
 {

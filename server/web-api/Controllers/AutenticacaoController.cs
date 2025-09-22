@@ -6,6 +6,7 @@ using Gestao_de_Estacionamentos.WebApi.Models.ModuloAutenticacao;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace Gestao_de_Estacionamentos.WebApi.Controllers;
 
@@ -14,6 +15,11 @@ namespace Gestao_de_Estacionamentos.WebApi.Controllers;
 public class AutenticacaoController(IMediator mediator, IMapper mapper) : Controller
 {
     [HttpPost("registrar")]
+    [SwaggerOperation(
+        Summary = "Registrar usuário",
+        Description = "Registra um novo usuário no sistema.",
+        Tags = new[] { "Autenticação" }
+    )]
     public async Task<ActionResult<AccessToken>> Registrar(RegistrarUsuarioRequest request)
     {
         var command = mapper.Map<RegistrarUsuarioCommand>(request);
@@ -38,6 +44,11 @@ public class AutenticacaoController(IMediator mediator, IMapper mapper) : Contro
     }
 
     [HttpPost("autenticar")]
+    [SwaggerOperation(
+        Summary = "Autenticar usuário",
+        Description = "Autentica um usuário existente no sistema.",
+        Tags = new[] { "Autenticação" }
+    )]
     public async Task<ActionResult<AccessToken>> Autenticar(AutenticarUsuarioRequest request)
     {
         var command = mapper.Map<AutenticarUsuarioCommand>(request);
@@ -62,6 +73,11 @@ public class AutenticacaoController(IMediator mediator, IMapper mapper) : Contro
     }
 
     [HttpPost("sair")]
+    [SwaggerOperation(
+        Summary = "Sair",
+        Description = "Encerra a sessão do usuário autenticado.",
+        Tags = new[] { "Autenticação" }
+    )]
     [Authorize]
     public async Task<IActionResult> Sair()
     {
