@@ -1,7 +1,13 @@
 ﻿using DotNet.Testcontainers.Containers;
 using FizzWare.NBuilder;
+using Gestao_de_Estacionamento.Infraestrutura.Conf;
+using Gestao_de_Estacionamentos.Core.Dominio.ModuloEstacionamento;
+using Gestao_de_Estacionamentos.Core.Dominio.ModuloFaturamento;
 using Gestao_de_Estacionamentos.Core.Dominio.ModuloRecepcao;
+using Gestao_de_Estacionamentos.Core.Dominio.ModuloRecepcao.EntidadeVeiculo;
 using Gestao_de_Estacionamentos.Infraestutura.Orm.Compartilhado;
+using Gestao_de_Estacionamentos.Infraestutura.Orm.ModuloEstacionamento;
+using Gestao_de_Estacionamentos.Infraestutura.Orm.ModuloFatura;
 using Gestao_de_Estacionamentos.Infraestutura.Orm.ModuloRecepcao;
 using Testcontainers.PostgreSql;
 
@@ -13,7 +19,9 @@ public abstract class TestFixture
     protected AppDbContext? _dbContext;
     
     protected RepositorioRecepcaoEmOrm? _repositorioRecepcao;
-
+    protected RepositorioEstacionamentoEmOrm? _repositorioEstacionamento;
+    protected RepositorioFaturaEmOrm? _repositorioFatura;
+    protected RepositorioRelatorioEmOrm? _repositorioRelatorio;
 
     protected static IDatabaseContainer? _container;
 
@@ -49,16 +57,21 @@ public abstract class TestFixture
         ConfigurarTabelas(_dbContext);
 
         _repositorioRecepcao = new RepositorioRecepcaoEmOrm(_dbContext);
+        _repositorioEstacionamento = new RepositorioEstacionamentoEmOrm(_dbContext);
+        _repositorioFatura = new RepositorioFaturaEmOrm(_dbContext);
+        _repositorioRelatorio = new RepositorioRelatorioEmOrm(_dbContext);
 
-        BuilderSetup.SetCreatePersistenceMethod<CheckIn>(async (CheckIn novoRegistro) =>
-        {
-              await _repositorioRecepcao.CadastrarAsync(novoRegistro);
-        });
+        BuilderSetup.SetCreatePersistenceMethod<CheckIn>(checkIn =>
+       _repositorioRecepcao.CadastrarAsync(checkIn).GetAwaiter().GetResult());
 
-        BuilderSetup.SetCreatePersistenceMethod<List<CheckIn>>(async (List<CheckIn> novosRegistros) =>
-        {
-              await _repositorioRecepcao.CadastrarEntidadesAsync(novosRegistros);
-        });
+        BuilderSetup.SetCreatePersistenceMethod<IList<Vaga>>(vagas =>
+            _repositorioEstacionamento.CadastrarEntidadesAsync(vagas).GetAwaiter().GetResult());
+
+        BuilderSetup.SetCreatePersistenceMethod<Fatura>(fatura =>
+        _repositorioFatura.CadastrarAsync(fatura).GetAwaiter().GetResult());
+
+        BuilderSetup.SetCreatePersistenceMethod<Relatorio>(relatorio =>
+        _repositorioRelatorio.CadastrarAsync(relatorio).GetAwaiter().GetResult());
     }
 
     private static void ConfigurarTabelas(AppDbContext dbContext)
@@ -68,6 +81,9 @@ public abstract class TestFixture
         dbContext.CheckIns.RemoveRange(dbContext.CheckIns);
         dbContext.Veiculos.RemoveRange(dbContext.Veiculos);
         dbContext.Tickets.RemoveRange(dbContext.Tickets);
+        dbContext.Vagas.RemoveRange(dbContext.Vagas);
+        dbContext.Faturas.RemoveRange(dbContext.Faturas);
+        dbContext.Relatorio.RemoveRange(dbContext.Relatorio);
 
         dbContext.SaveChanges();
     }

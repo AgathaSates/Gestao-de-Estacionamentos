@@ -1,4 +1,5 @@
 ﻿using Gestao_de_Estacionamentos.Core.Dominio.Compartilhado;
+using Gestao_de_Estacionamentos.Core.Dominio.ModuloEstacionamento;
 using Gestao_de_Estacionamentos.Core.Dominio.ModuloFaturamento;
 using Gestao_de_Estacionamentos.Core.Dominio.ModuloRecepcao;
 using Gestao_de_Estacionamentos.Core.Dominio.ModuloRecepcao.EntidadeTicket;
@@ -10,11 +11,12 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 namespace Gestao_de_Estacionamentos.Infraestutura.Orm.Compartilhado;
 public class AppDbContext(DbContextOptions options) : IdentityDbContext<Usuario, Cargo, Guid>(options), IUnitOfWork
 {
+    public DbSet<CheckIn> CheckIns { get; set; }
     public DbSet<Veiculo> Veiculos { get; set; }
     public DbSet<Ticket> Tickets { get; set; }
-    public DbSet<CheckIn> CheckIns { get; set; }
+    public DbSet<Vaga> Vagas { get; set; }
     public DbSet<Fatura> Faturas { get; set; } 
-    public DbSet<Relatorio> Relatorio { get; set; }  
+    public DbSet<Relatorio> Relatorio { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

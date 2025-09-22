@@ -16,6 +16,7 @@ namespace Gestao_de_Estacionamentos.Infraestutura.Orm.ModuloFatura
         {
             return await context.Faturas
                  .Where(f => f.DataEntrada >= dataInicio && f.DataSaida <= dataFim)
+                 .OrderBy(f => f.DataEntrada)
                  .ToListAsync();
         }
     }
