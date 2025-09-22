@@ -1,4 +1,4 @@
-﻿using System.Text.Json;
+using System.Text.Json;
 using AutoMapper;
 using FluentResults;
 using Gestao_de_Estacionamentos.Core.Aplicacao.ModuloFatura.Commands;

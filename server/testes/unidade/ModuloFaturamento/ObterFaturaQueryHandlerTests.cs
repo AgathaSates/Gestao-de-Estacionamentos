@@ -1,4 +1,4 @@
-﻿
+
 using System.Runtime.Serialization;
 using AutoMapper;
 using FluentResults;

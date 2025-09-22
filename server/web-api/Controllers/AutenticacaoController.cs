@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using FluentResults;
 using Gestao_de_Estacionamentos.Core.Aplicacao.ModuloAutenticacao.Commands;
 using Gestao_de_Estacionamentos.Core.Dominio.ModuloFaturamento;

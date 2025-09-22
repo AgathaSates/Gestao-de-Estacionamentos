@@ -1,4 +1,4 @@
-﻿using System.Collections.Immutable;
+using System.Collections.Immutable;
 using FluentResults;
 using Gestao_de_Estacionamentos.Core.Aplicacao.ModuloRecepcao.Commands;
 using MediatR;

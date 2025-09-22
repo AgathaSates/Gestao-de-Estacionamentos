@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using FluentResults;
 using Gestao_de_Estacionamentos.Core.Aplicacao.ModuloRecepcao.Commands;
 using Gestao_de_Estacionamentos.Core.Dominio.Compartilhado;
@@ -17,7 +17,7 @@ public class AdicionarObservacaoCommandHandler(
 {
     public async Task<Result<AdicionarObservacaoResult>> Handle(AdicionarObservacaoCommand command, CancellationToken cancellationToken)
     {
-        try 
+        try
         {
             var checkIn = await repositorioRecepcao.SelecionarRegistroPorIdAsync(command.id);
 

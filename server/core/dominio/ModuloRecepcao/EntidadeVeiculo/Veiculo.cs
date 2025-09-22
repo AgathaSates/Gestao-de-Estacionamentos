@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics.CodeAnalysis;
 using Gestao_de_Estacionamentos.Core.Dominio.Compartilhado;
 using Gestao_de_Estacionamentos.Core.Dominio.ModuloEstacionamento;
@@ -22,7 +22,7 @@ public class Veiculo : EntidadeBase<Veiculo>
 
 
     [ExcludeFromCodeCoverage]
-    public Veiculo()  { }
+    public Veiculo() { }
 
     public Veiculo(string placa, string modelo, string cor, string? observacoes = null) : this()
     {

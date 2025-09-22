@@ -1,4 +1,4 @@
-﻿using FluentValidation;
+using FluentValidation;
 using Gestao_de_Estacionamentos.Core.Aplicacao.ModuloEstacionamento.Commands.Vagas;
 
 namespace Gestao_de_Estacionamentos.Core.Aplicacao.FluentValidation.ModuloEstacionamento.Vagas;

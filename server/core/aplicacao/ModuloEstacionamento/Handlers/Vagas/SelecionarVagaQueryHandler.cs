@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using FluentResults;
 using FluentValidation;
 using Gestao_de_Estacionamentos.Core.Aplicacao.ModuloEstacionamento.Commands.Vagas;
@@ -23,9 +23,9 @@ public class SelecionarVagaQueryHandler(
             return Result.Fail(erroFormatado);
         }
 
-        try 
+        try
         {
-            Vaga? vaga = null; 
+            Vaga? vaga = null;
 
             if (query.Id.HasValue)
             {

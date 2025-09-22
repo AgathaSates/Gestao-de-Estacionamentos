@@ -1,4 +1,4 @@
-﻿using System.Collections.Immutable;
+using System.Collections.Immutable;
 using AutoMapper;
 using Gestao_de_Estacionamentos.Core.Aplicacao.ModuloFatura.Commands;
 using Gestao_de_Estacionamentos.Core.Dominio.ModuloFaturamento;

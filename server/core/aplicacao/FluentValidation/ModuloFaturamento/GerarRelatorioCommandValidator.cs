@@ -1,4 +1,4 @@
-﻿using FluentValidation;
+using FluentValidation;
 using Gestao_de_Estacionamentos.Core.Aplicacao.ModuloFatura.Commands;
 
 namespace Gestao_de_Estacionamentos.Core.Aplicacao.FluentValidation.ModuloFaturamento;

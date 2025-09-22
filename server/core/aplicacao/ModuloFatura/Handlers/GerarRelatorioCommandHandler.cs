@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using FluentResults;
 using FluentValidation;
 using Gestao_de_Estacionamentos.Core.Aplicacao.ModuloFatura.Commands;
@@ -57,7 +57,7 @@ namespace Gestao_de_Estacionamentos.Core.Aplicacao.ModuloFatura.Handlers
                 var result = mapper.Map<GerarRelatorioResult>(relatorio);
 
                 return Result.Ok(result);
-            }            
+            }
             catch (Exception ex)
             {
                 await unitOfWork.RollbackAsync();

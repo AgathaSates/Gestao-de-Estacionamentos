@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.CodeAnalysis;
 using Gestao_de_Estacionamentos.Core.Dominio.Compartilhado;
 
 namespace Gestao_de_Estacionamentos.Core.Dominio.ModuloFaturamento
@@ -11,17 +11,17 @@ namespace Gestao_de_Estacionamentos.Core.Dominio.ModuloFaturamento
         public List<Fatura> Faturas { get; set; }
 
         [ExcludeFromCodeCoverage]
-        public Relatorio() 
+        public Relatorio()
         {
             Faturas = new List<Fatura>();
         }
 
-        public Relatorio (DateTime dataInicial, DateTime dataFinal, List<Fatura> faturas)
+        public Relatorio(DateTime dataInicial, DateTime dataFinal, List<Fatura> faturas)
         {
-            Id = Guid.NewGuid();    
+            Id = Guid.NewGuid();
             DataInicial = dataInicial;
             DataFinal = dataFinal;
-            Faturas = faturas;            
+            Faturas = faturas;
             GerarValorTotal();
         }
 

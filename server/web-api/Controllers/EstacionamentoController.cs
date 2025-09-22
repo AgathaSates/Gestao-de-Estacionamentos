@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using FluentResults;
 using Gestao_de_Estacionamentos.Core.Aplicacao.ModuloEstacionamento.Commands.Vagas;
 using Gestao_de_Estacionamentos.Core.Aplicacao.ModuloEstacionamento.Commands.Veiculos;
@@ -99,7 +99,7 @@ public class EstacionamentoController(IMediator mediator, IMapper mapper) : Cont
         Description = "Adiciona um veículo a uma vaga de estacionamento.",
         Tags = new[] { "Estacionamento Veiculos" }
     )]
-    public async Task<ActionResult<AdicionarVeiculoAVagaResponse>> AdicionarVeiculo([FromBody]AdicionarVeiculoAVagaRequest request)
+    public async Task<ActionResult<AdicionarVeiculoAVagaResponse>> AdicionarVeiculo([FromBody] AdicionarVeiculoAVagaRequest request)
     {
         var command = mapper.Map<AdicionarVeiculoAVagaCommand>(request);
 
@@ -128,7 +128,7 @@ public class EstacionamentoController(IMediator mediator, IMapper mapper) : Cont
         Description = "Remove um veículo de uma vaga de estacionamento.",
         Tags = new[] { "Estacionamento Veiculos" }
     )]
-    public async Task<ActionResult<RemoverVeiculoDaVagaResponse>> RemoverVeiculo([FromBody]RemoverVeiculoDaVagaRequest request)
+    public async Task<ActionResult<RemoverVeiculoDaVagaResponse>> RemoverVeiculo([FromBody] RemoverVeiculoDaVagaRequest request)
     {
         var command = mapper.Map<RemoverVeiculoDaVagaCommand>(request);
 

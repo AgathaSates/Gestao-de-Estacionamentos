@@ -1,4 +1,4 @@
-﻿using System.Collections.Immutable;
+using System.Collections.Immutable;
 using AutoMapper;
 using Gestao_de_Estacionamentos.Core.Aplicacao.ModuloRecepcao.Commands;
 using Gestao_de_Estacionamentos.Core.Dominio.ModuloRecepcao;
@@ -13,12 +13,12 @@ public class CheckInMappingProfile : Profile
         // [1] Commands/Results de [apoio]
 
         CreateMap<CadastrarVeiculoDto, Veiculo>()
-            .ConstructUsing(dto => new Veiculo (
-                dto.placa, dto.modelo, dto.cor, dto.observacoes ));
+            .ConstructUsing(dto => new Veiculo(
+                dto.placa, dto.modelo, dto.cor, dto.observacoes));
 
         CreateMap<EditarVeiculoDto, Veiculo>()
-            .ConstructUsing(dto => new Veiculo (
-                dto.placa, dto.modelo, dto.cor,dto.observacoes )).ReverseMap();
+            .ConstructUsing(dto => new Veiculo(
+                dto.placa, dto.modelo, dto.cor, dto.observacoes)).ReverseMap();
 
         CreateMap<Veiculo, VisualizarVeiculoDto>()
             .ConstructUsing(veiculo => new VisualizarVeiculoDto(
@@ -49,7 +49,7 @@ public class CheckInMappingProfile : Profile
             new CheckIn(
                 ctx.Mapper.Map<Veiculo>(src.Veiculo),
                 src.Nome,
-                src.CPF        
+                src.CPF
             ));
 
         CreateMap<CheckIn, EditarCheckInResult>()

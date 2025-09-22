@@ -1,4 +1,4 @@
-﻿using Gestao_de_Estacionamentos.Core.Dominio.ModuloEstacionamento;
+using Gestao_de_Estacionamentos.Core.Dominio.ModuloEstacionamento;
 using Gestao_de_Estacionamentos.Core.Dominio.ModuloRecepcao.EntidadeVeiculo;
 using Gestao_de_Estacionamentos.Infraestutura.Orm.Compartilhado;
 using Microsoft.EntityFrameworkCore;
@@ -36,21 +36,22 @@ public class RepositorioEstacionamentoEmOrm(AppDbContext context)
     }
 
     public async Task<Veiculo?> SelecionarVeiculoPorPlaca(string placa)
-    {       var vaga = await registros
+    {
+        var vaga = await registros
             .IgnoreQueryFilters()
             .Include(v => v.VeiculoEstacionado)
             .ThenInclude(ve => ve.CheckIn)
             .ThenInclude(ci => ci.Ticket)
             .FirstOrDefaultAsync(v => v.VeiculoEstacionado
             != null && v.VeiculoEstacionado.Placa == placa);
-        
+
         var veiculoEncontrado = vaga?.VeiculoEstacionado;
-        
+
         return veiculoEncontrado;
     }
 
     public async Task<Veiculo?> SelecionarVeiculoPorTicket(int? numeroTicket)
-    { 
+    {
         var vaga = await registros
             .IgnoreQueryFilters()
             .Include(v => v.VeiculoEstacionado)
@@ -58,7 +59,7 @@ public class RepositorioEstacionamentoEmOrm(AppDbContext context)
             .ThenInclude(ci => ci.Ticket)
             .FirstOrDefaultAsync(v => v.VeiculoEstacionado
             != null && v.VeiculoEstacionado.CheckIn.Ticket.NumeroSequencial == numeroTicket);
-        
+
         return vaga?.VeiculoEstacionado;
     }
 

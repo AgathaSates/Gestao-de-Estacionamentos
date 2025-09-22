@@ -1,4 +1,4 @@
-﻿namespace Gestao_de_Estacionamentos.WebApi.AutoMapper;
+namespace Gestao_de_Estacionamentos.WebApi.AutoMapper;
 
 public static class AutoMapperConfig
 {

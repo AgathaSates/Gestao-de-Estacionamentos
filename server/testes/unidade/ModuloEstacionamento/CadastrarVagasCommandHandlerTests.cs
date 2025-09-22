@@ -49,9 +49,9 @@ public class CadastrarVagasCommandHandlerTests
     public async Task Deve_Falhar_Quando_Validacao_De_Dados_Eh_Invalida()
     {
         // Arrange
-        var command = new CadastrarVagasCommand(5,'A');
+        var command = new CadastrarVagasCommand(5, 'A');
         var validationResult = new FluentValidation.Results.ValidationResult(new List<FluentValidation.Results.ValidationFailure> {
-            new("Field", "Erro de validação")
+            new("Field", "Erro de validaÃ§Ã£o")
         });
 
         _validator.Setup(v => v.ValidateAsync(command, It.IsAny<CancellationToken>())).ReturnsAsync(validationResult);
@@ -119,7 +119,7 @@ public class CadastrarVagasCommandHandlerTests
         Assert.IsTrue(result.IsFailed);
         _unitOfWork.Verify(u => u.RollbackAsync(), Times.Once);
 
-        // Verifica chamada ao método base Log
+        // Verifica chamada ao mÃ©todo base Log
         _logger.Verify(
             x => x.Log(
                 LogLevel.Error,

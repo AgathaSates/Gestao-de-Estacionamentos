@@ -1,4 +1,4 @@
-﻿using FluentResults;
+using FluentResults;
 
 namespace Gestao_de_Estacionamentos.Core.Aplicacao;
 

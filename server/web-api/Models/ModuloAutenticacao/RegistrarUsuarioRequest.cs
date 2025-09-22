@@ -1,4 +1,4 @@
-﻿namespace Gestao_de_Estacionamentos.WebApi.Models.ModuloAutenticacao;
+namespace Gestao_de_Estacionamentos.WebApi.Models.ModuloAutenticacao;
 
 public record RegistrarUsuarioRequest(
     string NomeCompleto,

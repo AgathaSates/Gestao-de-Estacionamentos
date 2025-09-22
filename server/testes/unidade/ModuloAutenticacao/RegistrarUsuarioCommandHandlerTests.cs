@@ -51,13 +51,13 @@ public class RegistrarUsuarioCommandHandlerTests
     {
         // Arrange
         var command = new RegistrarUsuarioCommand("nome", "email@teste.com", "senha123", "senhaErrada");
-        
+
         // Act
         var result = await _handler.Handle(command, CancellationToken.None);
 
         // Assert
         Assert.IsTrue(result.IsFailed);
-        Assert.AreEqual("RequisiÁ„o inv·lida", result.Errors[0].Message);
+        Assert.AreEqual("Requisi√ß√£o inv√°lida", result.Errors[0].Message);
     }
 
     [TestMethod]
@@ -67,7 +67,7 @@ public class RegistrarUsuarioCommandHandlerTests
         var command = new RegistrarUsuarioCommand("nome", "email@teste.com", "senha123", "senha123");
         var identityErrors = new List<IdentityError>
         {
-            new IdentityError { Code = "DuplicateUserName", Description = "Usu·rio j· existe" },
+            new IdentityError { Code = "DuplicateUserName", Description = "Usu√°rio j√° existe" },
             new IdentityError { Code = "PasswordTooShort", Description = "Senha curta" }
         };
         var identityResult = IdentityResult.Failed(identityErrors.ToArray());
@@ -79,7 +79,7 @@ public class RegistrarUsuarioCommandHandlerTests
         var result = await _handler.Handle(command, CancellationToken.None);
 
         // Assert
-        Assert.AreEqual("RequisiÁ„o inv·lida", result.Errors[0].Message);
+        Assert.AreEqual("Requisi√ß√£o inv√°lida", result.Errors[0].Message);
     }
 
     [TestMethod]
@@ -100,7 +100,7 @@ public class RegistrarUsuarioCommandHandlerTests
         var result = await _handler.Handle(command, CancellationToken.None);
 
         // Assert
-        Assert.AreEqual("RequisiÁ„o inv·lida", result.Errors[0].Message);
+        Assert.AreEqual("Requisi√ß√£o inv√°lida", result.Errors[0].Message);
     }
 
     [TestMethod]

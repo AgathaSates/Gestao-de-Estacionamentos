@@ -40,7 +40,7 @@ public class SelecionarVagaQueryHandlerTests
         // Arrange
         var query = new SelecionarVagaQuery(Guid.NewGuid(), null, null);
         var validationResult = new FluentValidation.Results.ValidationResult(new List<FluentValidation.Results.ValidationFailure> {
-            new("Field", "Erro de validação")
+            new("Field", "Erro de validaÃ§Ã£o")
         });
 
         _validator.Setup(v => v.ValidateAsync(query, It.IsAny<CancellationToken>())).ReturnsAsync(validationResult);
@@ -67,7 +67,7 @@ public class SelecionarVagaQueryHandlerTests
             vaga.NumeroVaga,
             vaga.Zona,
             vaga.EstaOcupada,
-            null 
+            null
         );
 
         var resultDto = new SelecionarVagaResult(vagaDto);

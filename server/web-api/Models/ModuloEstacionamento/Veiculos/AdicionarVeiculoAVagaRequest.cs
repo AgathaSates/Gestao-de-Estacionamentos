@@ -1,4 +1,4 @@
-﻿using Gestao_de_Estacionamentos.Core.Aplicacao.ModuloEstacionamento.Commands.Veiculos;
+using Gestao_de_Estacionamentos.Core.Aplicacao.ModuloEstacionamento.Commands.Veiculos;
 namespace Gestao_de_Estacionamentos.WebApi.Models.ModuloEstacionamento.Veiculos;
 
 public record AdicionarVeiculoAVagaRequest(Guid? vagaId, int? NumeroVaga,

@@ -1,4 +1,4 @@
-﻿using DotNet.Testcontainers.Containers;
+using DotNet.Testcontainers.Containers;
 using FizzWare.NBuilder;
 using Gestao_de_Estacionamentos.Core.Dominio.ModuloEstacionamento;
 using Gestao_de_Estacionamentos.Core.Dominio.ModuloFaturamento;
@@ -15,7 +15,7 @@ namespace Gestao_de_Estacionamentos.Testes.Integracao.Compartilhado;
 public abstract class TestFixture
 {
     protected AppDbContext? _dbContext;
-    
+
     protected RepositorioRecepcaoEmOrm? _repositorioRecepcao;
     protected RepositorioEstacionamentoEmOrm? _repositorioEstacionamento;
     protected RepositorioFaturaEmOrm? _repositorioFatura;
@@ -75,7 +75,7 @@ public abstract class TestFixture
     private static void ConfigurarTabelas(AppDbContext dbContext)
     {
         dbContext.Database.EnsureCreated();
-    
+
         dbContext.CheckIns.RemoveRange(dbContext.CheckIns);
         dbContext.Veiculos.RemoveRange(dbContext.Veiculos);
         dbContext.Tickets.RemoveRange(dbContext.Tickets);
@@ -95,7 +95,7 @@ public abstract class TestFixture
     {
         if (_container is null)
             throw new ArgumentNullException("O Banco de dados não foi inicializado.");
-        
+
         await _container.StopAsync();
         await _container.DisposeAsync();
     }

@@ -1,4 +1,4 @@
-﻿using System.Security.Claims;
+using System.Security.Claims;
 using Gestao_de_Estacionamentos.Core.Dominio.ModuloFaturamento;
 
 namespace Gestao_de_Estacionamentos.WebApi.Identity;

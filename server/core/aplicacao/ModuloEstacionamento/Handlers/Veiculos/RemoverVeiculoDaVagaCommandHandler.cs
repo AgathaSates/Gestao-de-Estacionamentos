@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using FluentResults;
 using FluentValidation;
 using Gestao_de_Estacionamentos.Core.Aplicacao.ModuloEstacionamento.Commands.Veiculos;
@@ -37,11 +37,11 @@ public class RemoverVeiculoDaVagaCommandHandler(
 
             // [1] Encontra o veiculo 
             if (command.placaVeiculo is not null)
-                 veiculo = await repositorioEstacionamento.SelecionarVeiculoPorPlaca(command.placaVeiculo);
-            
+                veiculo = await repositorioEstacionamento.SelecionarVeiculoPorPlaca(command.placaVeiculo);
+
             else if (command.numeroTicket.HasValue)
                 veiculo = await repositorioEstacionamento.SelecionarVeiculoPorTicket(command.numeroTicket.Value);
-            
+
 
             if (veiculo == null)
             {

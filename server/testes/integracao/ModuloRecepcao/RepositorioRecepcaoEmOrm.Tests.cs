@@ -1,4 +1,4 @@
-﻿using Gestao_de_Estacionamentos.Core.Dominio.ModuloRecepcao;
+using Gestao_de_Estacionamentos.Core.Dominio.ModuloRecepcao;
 using Gestao_de_Estacionamentos.Core.Dominio.ModuloRecepcao.EntidadeVeiculo;
 using Gestao_de_Estacionamentos.Testes.Integracao.Compartilhado;
 
@@ -8,7 +8,7 @@ namespace Gestao_de_Estacionamentos.Testes.Integracao.ModuloRecepcao;
 [TestCategory("Testes de Integração de Recepção")]
 public class RepositorioRecepcaoEmOrm : TestFixture
 {
-    Veiculo veiculo = new Veiculo( "TEST567", "modelo", "cor", "vidro quebrado");
+    Veiculo veiculo = new Veiculo("TEST567", "modelo", "cor", "vidro quebrado");
     Veiculo veiculo2 = new Veiculo("OUTRA12", "modelo2", "cor2");
     Veiculo veiculo3 = new Veiculo("VEIC789", "modelo3", "cor3", "pneu furado");
 
@@ -20,7 +20,7 @@ public class RepositorioRecepcaoEmOrm : TestFixture
 
         // Act
         await _repositorioRecepcao!.CadastrarAsync(checkIn);
-        await _dbContext!.SaveChangesAsync(); 
+        await _dbContext!.SaveChangesAsync();
 
         CheckIn? checkInEncontrado = await _repositorioRecepcao!
             .SelecionarRegistroPorIdAsync(checkIn.Id);

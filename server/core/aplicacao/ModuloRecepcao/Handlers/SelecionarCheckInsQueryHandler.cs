@@ -1,4 +1,4 @@
-﻿using System.Text.Json;
+using System.Text.Json;
 using AutoMapper;
 using FluentResults;
 using Gestao_de_Estacionamentos.Core.Aplicacao.ModuloRecepcao.Commands;
@@ -27,7 +27,7 @@ public class SelecionarCheckInsQueryHandler(
             if (!string.IsNullOrWhiteSpace(jsonString))
             {
                 var registrosEmCache = JsonSerializer.Deserialize<SelecionarCheckInsResult>(jsonString);
-                
+
                 if (registrosEmCache is not null)
                 {
                     logger.LogInformation("Cache hit for key {CacheKey}", cacheKey);
@@ -60,6 +60,6 @@ public class SelecionarCheckInsQueryHandler(
             );
 
             return Result.Fail(ResultadosErro.ExcecaoInternaErro(ex));
-        }   
+        }
     }
 }

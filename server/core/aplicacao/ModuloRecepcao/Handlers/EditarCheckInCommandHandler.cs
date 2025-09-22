@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using FluentResults;
 using FluentValidation;
 using Gestao_de_Estacionamentos.Core.Aplicacao.ModuloRecepcao.Commands;
@@ -58,7 +58,7 @@ public class EditarCheckInCommandHandler(IRepositorioRecepcao repositorioRecepca
             return Result.Ok(result);
 
         }
-        catch (Exception ex)      
+        catch (Exception ex)
         {
             await unitOfWork.RollbackAsync();
 

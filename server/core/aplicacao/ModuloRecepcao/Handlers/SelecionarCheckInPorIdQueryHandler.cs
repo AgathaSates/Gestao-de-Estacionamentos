@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using FluentResults;
 using Gestao_de_Estacionamentos.Core.Aplicacao.ModuloRecepcao.Commands;
 using Gestao_de_Estacionamentos.Core.Dominio.ModuloRecepcao;
@@ -16,7 +16,7 @@ public class SelecionarCheckInPorIdQueryHandler(
         try
         {
             var checkIn = await repositorioRecepcao.SelecionarRegistroPorIdAsync(query.Id);
-           
+
             if (checkIn is null)
                 return Result.Fail(ResultadosErro.RegistroNaoEncontradoErro(query.Id));
 

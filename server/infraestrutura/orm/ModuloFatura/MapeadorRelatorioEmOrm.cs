@@ -1,4 +1,4 @@
-﻿using Gestao_de_Estacionamentos.Core.Dominio.ModuloFaturamento;
+using Gestao_de_Estacionamentos.Core.Dominio.ModuloFaturamento;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

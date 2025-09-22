@@ -1,4 +1,4 @@
-﻿using Gestao_de_Estacionamentos.Core.Dominio.ModuloEstacionamento;
+using Gestao_de_Estacionamentos.Core.Dominio.ModuloEstacionamento;
 using Gestao_de_Estacionamentos.Core.Dominio.ModuloRecepcao.EntidadeVeiculo;
 
 namespace Gestao_de_Estacionamentos.Testes.Unidade.ModuloEstacionamento;
@@ -28,10 +28,10 @@ public class VagaTests
         // Arrange
         var vaga = new Vaga('B');
         var veiculo = new Veiculo("XYZ1234", "Sedan", "Azul");
-        
+
         // Act
         vaga.AdicionarVeiculo(veiculo);
-       
+
         // Assert
         Assert.IsTrue(vaga.EstaOcupada);
         Assert.AreEqual(veiculo, vaga.VeiculoEstacionado);

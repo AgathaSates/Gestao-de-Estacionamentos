@@ -1,9 +1,9 @@
-﻿using FluentResults;
+using FluentResults;
 using MediatR;
 
 namespace Gestao_de_Estacionamentos.Core.Aplicacao.ModuloFatura.Commands
 {
-   public record GerarRelatorioCommand(DateTime dataInicio, DateTime dataFim) : IRequest<Result<GerarRelatorioResult>>;
+    public record GerarRelatorioCommand(DateTime dataInicio, DateTime dataFim) : IRequest<Result<GerarRelatorioResult>>;
 
     public record GerarRelatorioResult(RelatorioDto relatorioDto);
 

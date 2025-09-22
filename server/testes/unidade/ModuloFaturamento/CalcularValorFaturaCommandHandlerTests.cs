@@ -45,7 +45,7 @@ public class CalcularValorFaturaCommandHandlerTests
         // Arrange
         var command = new CalcularValorFaturaCommand(DateTime.Today, DateTime.Today.AddDays(2));
         var validationResult = new ValidationResult(new List<ValidationFailure> {
-            new("dataInicio", "Data de início inválida")
+            new("dataInicio", "Data de inÃ­cio invÃ¡lida")
         });
 
         _validator.Setup(v => v.ValidateAsync(command, It.IsAny<CancellationToken>())).ReturnsAsync(validationResult);

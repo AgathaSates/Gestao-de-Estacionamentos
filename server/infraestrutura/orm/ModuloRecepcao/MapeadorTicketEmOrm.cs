@@ -1,4 +1,4 @@
-﻿using Gestao_de_Estacionamentos.Core.Dominio.ModuloRecepcao.EntidadeTicket;
+using Gestao_de_Estacionamentos.Core.Dominio.ModuloRecepcao.EntidadeTicket;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

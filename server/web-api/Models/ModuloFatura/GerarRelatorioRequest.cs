@@ -1,4 +1,4 @@
-﻿using Gestao_de_Estacionamentos.Core.Aplicacao.ModuloFatura.Commands;
+using Gestao_de_Estacionamentos.Core.Aplicacao.ModuloFatura.Commands;
 
 namespace Gestao_de_Estacionamentos.WebApi.Models.ModuloFaturamento;
 

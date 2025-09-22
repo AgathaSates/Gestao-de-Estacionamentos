@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using FluentResults;
 using FluentValidation;
 using Gestao_de_Estacionamentos.Core.Aplicacao.ModuloRecepcao.Commands;
@@ -19,7 +19,7 @@ public class CadastrarCheckInCommandHandler(IRepositorioRecepcao repositorioRece
     public async Task<Result<CadastrarCheckInResult>> Handle(
         CadastrarCheckInCommand command, CancellationToken cancellationToken)
     {
-       // [1] Validação de dados
+        // [1] Validação de dados
         var resultadoValidacao = await validator.ValidateAsync(command, cancellationToken);
 
         if (!resultadoValidacao.IsValid)
@@ -52,7 +52,7 @@ public class CadastrarCheckInCommandHandler(IRepositorioRecepcao repositorioRece
             await unitOfWork.CommitAsync();
 
             // Invalida o cache
-            
+
             var cacheKey = $"checkins:u={tenantProvider.UsuarioId.GetValueOrDefault()}:q=all";
 
             await cache.RemoveAsync(cacheKey, cancellationToken);

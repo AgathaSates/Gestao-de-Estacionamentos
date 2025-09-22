@@ -1,4 +1,4 @@
-﻿using System.Collections.Immutable;
+using System.Collections.Immutable;
 using AutoMapper;
 using Gestao_de_Estacionamentos.Core.Aplicacao.ModuloFatura.Commands;
 using Gestao_de_Estacionamentos.Core.Aplicacao.ModuloRecepcao.Commands;
@@ -20,7 +20,7 @@ public class CheckInModelsMappingProfile : Profile
 
         CreateMap<(Guid, EditarCheckInRequest), EditarCheckInCommand>()
             .ConvertUsing(src => new EditarCheckInCommand(
-                src.Item1, 
+                src.Item1,
                 src.Item2.veiculo,
                 src.Item2.CPF,
                 src.Item2.Nome));

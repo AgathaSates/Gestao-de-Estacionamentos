@@ -74,7 +74,7 @@ public class AutenticarUsuarioCommandHandlerTests
 
         // Assert
         Assert.IsTrue(result.IsFailed);
-        Assert.AreEqual("Registro não encontrado", result.Errors[0].Message);
+        Assert.AreEqual("Registro nÃ£o encontrado", result.Errors[0].Message);
     }
 
     [TestMethod]
@@ -93,7 +93,7 @@ public class AutenticarUsuarioCommandHandlerTests
 
         // Assert
         Assert.IsTrue(result.IsFailed);
-        Assert.AreEqual("Requisição inválida", result.Errors[0].Message);
+        Assert.AreEqual("RequisiÃ§Ã£o invÃ¡lida", result.Errors[0].Message);
     }
 
     [TestMethod]
@@ -112,7 +112,7 @@ public class AutenticarUsuarioCommandHandlerTests
 
         // Assert
         Assert.IsTrue(result.IsFailed);
-        Assert.AreEqual("Requisição inválida", result.Errors[0].Message);
+        Assert.AreEqual("RequisiÃ§Ã£o invÃ¡lida", result.Errors[0].Message);
     }
 
     [TestMethod]
@@ -131,7 +131,7 @@ public class AutenticarUsuarioCommandHandlerTests
 
         // Assert
         Assert.IsTrue(result.IsFailed);
-        Assert.AreEqual("Requisição inválida", result.Errors[0].Message);
+        Assert.AreEqual("RequisiÃ§Ã£o invÃ¡lida", result.Errors[0].Message);
     }
 
     [TestMethod]
@@ -150,7 +150,7 @@ public class AutenticarUsuarioCommandHandlerTests
 
         // Assert
         Assert.IsTrue(result.IsFailed);
-        Assert.AreEqual("Requisição inválida", result.Errors[0].Message);
+        Assert.AreEqual("RequisiÃ§Ã£o invÃ¡lida", result.Errors[0].Message);
     }
 
     [TestMethod]

@@ -1,4 +1,4 @@
-﻿using System.Collections.Immutable;
+using System.Collections.Immutable;
 using AutoMapper;
 using Gestao_de_Estacionamentos.Core.Aplicacao.ModuloEstacionamento.Commands.Vagas;
 using Gestao_de_Estacionamentos.Core.Aplicacao.ModuloEstacionamento.Commands.Veiculos;
@@ -40,7 +40,7 @@ public class EstacionamentoMappingProfile : Profile
         // [4] Commands/Results de [Selecionar Todas As Vagas]
 
         CreateMap<IEnumerable<Vaga>, SelecionarVagasResult>()
-            .ConstructUsing((src, ctx) => 
+            .ConstructUsing((src, ctx) =>
             new SelecionarVagasResult(
                 src?.Select(v => ctx.Mapper.Map<VagaDto>(v))
                 .ToImmutableList() ?? ImmutableList<VagaDto>.Empty

@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity;
 
 namespace Gestao_de_Estacionamentos.Core.Dominio.ModuloFaturamento;
 

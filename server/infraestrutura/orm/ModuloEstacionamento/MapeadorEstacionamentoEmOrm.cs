@@ -1,4 +1,4 @@
-﻿using Gestao_de_Estacionamentos.Core.Dominio.ModuloEstacionamento;
+using Gestao_de_Estacionamentos.Core.Dominio.ModuloEstacionamento;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -7,9 +7,9 @@ public class MapeadorEstacionamentoEmOrm : IEntityTypeConfiguration<Vaga>
 {
     public void Configure(EntityTypeBuilder<Vaga> builder)
     {
-       builder.Property(v => v.Id)
-              .ValueGeneratedNever()
-              .IsRequired();
+        builder.Property(v => v.Id)
+               .ValueGeneratedNever()
+               .IsRequired();
 
         builder.Property(v => v.NumeroVaga)
                .ValueGeneratedOnAdd()

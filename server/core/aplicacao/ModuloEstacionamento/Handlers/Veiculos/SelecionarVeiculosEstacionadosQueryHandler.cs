@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using FluentResults;
 using Gestao_de_Estacionamentos.Core.Aplicacao.ModuloEstacionamento.Commands.Veiculos;
 using Gestao_de_Estacionamentos.Core.Dominio.ModuloEstacionamento;
@@ -20,7 +20,7 @@ public class SelecionarVeiculosEstacionadosQueryHandler(
             if (!string.IsNullOrWhiteSpace(request.placa))
             {
                 var veiculoEstacionado = await repositorioEstacionamento.SelecionarVeiculoPorPlaca(request.placa);
-                var veiculos =  new List<Veiculo>();
+                var veiculos = new List<Veiculo>();
                 veiculos.Add(veiculoEstacionado);
                 var result = mapper.Map<SelecionarVeiculosEstacionadosResult>(veiculos);
                 return Result.Ok(result);

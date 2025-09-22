@@ -1,4 +1,4 @@
-﻿using FluentValidation;
+using FluentValidation;
 using Gestao_de_Estacionamentos.Core.Aplicacao.ModuloRecepcao.Commands;
 
 namespace Gestao_de_Estacionamentos.Core.Aplicacao.FluentValidation.ModuloRecepcao;

@@ -1,4 +1,4 @@
-﻿namespace Gestao_de_Estacionamentos.Core.Dominio.Compartilhado;
+namespace Gestao_de_Estacionamentos.Core.Dominio.Compartilhado;
 
 public abstract class EntidadeBase<T>
 {

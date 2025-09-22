@@ -1,4 +1,4 @@
-﻿using Gestao_de_Estacionamentos.Core.Dominio.ModuloEstacionamento;
+using Gestao_de_Estacionamentos.Core.Dominio.ModuloEstacionamento;
 using Gestao_de_Estacionamentos.Core.Dominio.ModuloRecepcao;
 using Gestao_de_Estacionamentos.Core.Dominio.ModuloRecepcao.EntidadeVeiculo;
 using Gestao_de_Estacionamentos.Testes.Integracao.Compartilhado;
@@ -206,7 +206,7 @@ public class RepositorioEstacionamentoEmOrm : TestFixture
         Vaga vaga3 = new Vaga('C');
 
         var checkIns = new List<CheckIn> { checkIn1, checkIn2, checkIn3 };
-        var vagas = new List<Vaga>{ vaga1, vaga2, vaga3 };
+        var vagas = new List<Vaga> { vaga1, vaga2, vaga3 };
 
         await _repositorioRecepcao!.CadastrarEntidadesAsync(checkIns);
         await _repositorioEstacionamento!.CadastrarEntidadesAsync(vagas);

@@ -1,4 +1,4 @@
-﻿using Gestao_de_Estacionamentos.Core.Dominio.Compartilhado;
+using Gestao_de_Estacionamentos.Core.Dominio.Compartilhado;
 using Microsoft.EntityFrameworkCore;
 
 namespace Gestao_de_Estacionamentos.Infraestutura.Orm.Compartilhado;

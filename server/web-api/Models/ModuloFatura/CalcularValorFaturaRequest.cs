@@ -1,4 +1,4 @@
-﻿namespace Gestao_de_Estacionamentos.WebApi.Models.ModuloFaturamento;
+namespace Gestao_de_Estacionamentos.WebApi.Models.ModuloFaturamento;
 
 public record CalcularValorFaturaRequest(DateTime dataInicio, DateTime dataFim);
 

@@ -1,4 +1,4 @@
-﻿using Microsoft.OpenApi.Models;
+using Microsoft.OpenApi.Models;
 
 namespace Gestao_de_Estacionamentos.WebApi.Swagger;
 

@@ -1,4 +1,4 @@
-﻿using FluentResults;
+using FluentResults;
 using Gestao_de_Estacionamentos.Core.Aplicacao;
 using Gestao_de_Estacionamentos.Core.Aplicacao.ModuloAutenticacao.Commands;
 using Gestao_de_Estacionamentos.Core.Dominio.ModuloFaturamento;

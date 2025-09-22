@@ -1,4 +1,4 @@
-﻿using System.Text.Json;
+using System.Text.Json;
 using AutoMapper;
 using FluentResults;
 using Gestao_de_Estacionamentos.Core.Aplicacao.ModuloEstacionamento.Commands.Vagas;
@@ -9,7 +9,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Gestao_de_Estacionamentos.Core.Aplicacao.ModuloEstacionamento.Handlers.Vagas;
 public class SelecionarVagasQueryHandler(
-    IRepositorioEstacionamento repositorioEstacionamento, IMapper mapper, 
+    IRepositorioEstacionamento repositorioEstacionamento, IMapper mapper,
     IDistributedCache cache, ILogger<SelecionarVagasQueryHandler> logger
 ) : IRequestHandler<SelecionarVagasQuery, Result<SelecionarVagasResult>>
 {

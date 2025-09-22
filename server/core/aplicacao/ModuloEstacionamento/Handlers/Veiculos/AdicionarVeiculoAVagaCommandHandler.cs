@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using FluentResults;
 using FluentValidation;
 using Gestao_de_Estacionamentos.Core.Aplicacao.ModuloEstacionamento.Commands.Veiculos;
@@ -69,7 +69,7 @@ public class AdicionarVeiculoAVagaCommandHandler(
             return Result.Fail(erro);
         }
 
-      
+
         // [4.4] Valida se o veiculo já esta estacionado
 
         if (veiculo.VagaId.HasValue)

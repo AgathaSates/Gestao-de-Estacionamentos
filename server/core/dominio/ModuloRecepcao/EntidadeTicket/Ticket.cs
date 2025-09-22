@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics.CodeAnalysis;
 using Gestao_de_Estacionamentos.Core.Dominio.Compartilhado;
 using Gestao_de_Estacionamentos.Core.Dominio.ModuloRecepcao.EntidadeVeiculo;
@@ -18,7 +18,7 @@ public class Ticket : EntidadeBase<Ticket>
 
     [ExcludeFromCodeCoverage]
     public Ticket() { }
-   
+
     public Ticket(DateTime dataHoraEntrada) : this()
     {
         Id = Guid.NewGuid();

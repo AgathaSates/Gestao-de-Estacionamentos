@@ -1,4 +1,4 @@
-﻿using FluentValidation;
+using FluentValidation;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -29,17 +29,17 @@ public static class DependencyInjection
 
         services.AddSerilogConfig(logging, configuration);
 
-        services.AddMediatR(cfg => 
+        services.AddMediatR(cfg =>
         {
             cfg.RegisterServicesFromAssembly(assembly);
-            cfg.LicenseKey = licensekey;        
+            cfg.LicenseKey = licensekey;
         });
 
         services.AddAutoMapper(cfg =>
-        { 
+        {
             cfg.LicenseKey = licensekey;
 
-        },assembly);
+        }, assembly);
 
         services.AddValidatorsFromAssembly(assembly);
 

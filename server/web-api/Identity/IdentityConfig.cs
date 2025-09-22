@@ -1,4 +1,4 @@
-﻿using System.Text;
+using System.Text;
 using Gestao_de_Estacionamentos.Core.Dominio.ModuloFaturamento;
 using Gestao_de_Estacionamentos.Core.Aplicacao.ModuloAutenticacao;
 using Gestao_de_Estacionamentos.Infraestutura.Orm.Compartilhado;

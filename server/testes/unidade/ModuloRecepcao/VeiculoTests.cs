@@ -1,4 +1,4 @@
-﻿using Gestao_de_Estacionamentos.Core.Dominio.ModuloEstacionamento;
+using Gestao_de_Estacionamentos.Core.Dominio.ModuloEstacionamento;
 using Gestao_de_Estacionamentos.Core.Dominio.ModuloRecepcao;
 using Gestao_de_Estacionamentos.Core.Dominio.ModuloRecepcao.EntidadeVeiculo;
 
@@ -35,10 +35,10 @@ public sealed class VeiculoTests
         // Arrange
         Veiculo veiculo = new Veiculo("ABC-1234", "Toyota Corolla", "Prata");
         string novasObservacoes = "Estacionado na vaga 5";
-        
+
         // Act
         veiculo.AdicionarObservacoes(novasObservacoes);
-        
+
         // Assert
         Assert.AreEqual(novasObservacoes, veiculo.Observacoes);
     }
@@ -49,10 +49,10 @@ public sealed class VeiculoTests
         // Arrange
         Veiculo veiculo = new Veiculo("ABC-1234", "Toyota Corolla", "Prata");
         var checkIn = new CheckIn();
-        
+
         // Act
         veiculo.AdicionarCheckIn(checkIn);
-        
+
         // Assert
         Assert.AreEqual(checkIn, veiculo.CheckIn);
     }
@@ -63,10 +63,10 @@ public sealed class VeiculoTests
         // Arrange
         Veiculo veiculo = new Veiculo("ABC-1234", "Toyota Corolla", "Prata");
         var vaga = new Vaga('A');
-        
+
         // Act
         veiculo.AdicionarVaga(vaga);
-        
+
         // Assert
         Assert.AreEqual(vaga, veiculo.Vaga);
     }
@@ -77,10 +77,10 @@ public sealed class VeiculoTests
         // Arrange
         Veiculo veiculo = new Veiculo("ABC-1234", "Toyota Corolla", "Prata", "Nenhuma");
         Veiculo veiculoEditado = new Veiculo("XYZ-5678", "Honda Civic", "Preto", "Com arranhões");
-        
+
         // Act
         veiculo.AtualizarRegistro(veiculoEditado);
-        
+
         // Assert
         Assert.AreEqual("XYZ-5678", veiculo.Placa);
         Assert.AreEqual("Honda Civic", veiculo.Modelo);

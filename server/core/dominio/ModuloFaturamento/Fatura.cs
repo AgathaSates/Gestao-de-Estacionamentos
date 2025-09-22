@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.CodeAnalysis;
 using Gestao_de_Estacionamentos.Core.Dominio.Compartilhado;
 
 namespace Gestao_de_Estacionamentos.Core.Dominio.ModuloFaturamento
@@ -26,7 +26,7 @@ namespace Gestao_de_Estacionamentos.Core.Dominio.ModuloFaturamento
         //para gerar o valor total da fatura -> [Valortotal] -> para quando criar a fatura
         public void CalcularValorTotal(int NumeroDiarias, decimal valorDiaria)
         {
-            Valortotal = NumeroDiarias * valorDiaria /100;
+            Valortotal = NumeroDiarias * valorDiaria / 100;
         }
 
         //para gerar o numero de diarias -> [NumeroDiarias] -> para quando criar a fatura

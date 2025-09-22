@@ -1,4 +1,4 @@
-﻿using Gestao_de_Estacionamentos.Core.Dominio.ModuloRecepcao;
+using Gestao_de_Estacionamentos.Core.Dominio.ModuloRecepcao;
 using Gestao_de_Estacionamentos.Core.Dominio.ModuloRecepcao.EntidadeTicket;
 using Gestao_de_Estacionamentos.Core.Dominio.ModuloRecepcao.EntidadeVeiculo;
 
@@ -33,10 +33,10 @@ public sealed class CheckInTests
         var veiculo = new Veiculo("ABC-1234", "ModeloX", "Vermelho", "Observacao");
         var checkIn = new CheckIn(veiculo, "123.456.789-00", "João Silva");
         var ticket = new Ticket(DateTime.Now);
-       
+
         // Act
         checkIn.AdicionarTicket(ticket);
-       
+
         // Assert
         Assert.AreEqual(ticket, checkIn.Ticket);
     }
@@ -47,13 +47,13 @@ public sealed class CheckInTests
         // Arrange
         var veiculoOriginal = new Veiculo("ABC-1234", "ModeloX", "Vermelho", "Observacao");
         var checkIn = new CheckIn(veiculoOriginal, "123.456.789-00", "João Silva");
-       
+
         var veiculoEditado = new Veiculo("XYZ-5678", "ModeloY", "Azul", "Nova Observacao");
         var checkInEditado = new CheckIn(veiculoEditado, "987.654.321-00", "Maria Souza");
-       
+
         // Act
         checkIn.AtualizarRegistro(checkInEditado);
-       
+
         // Assert
         Assert.AreEqual("XYZ-5678", checkIn.Veiculo.Placa);
         Assert.AreEqual("ModeloY", checkIn.Veiculo.Modelo);
