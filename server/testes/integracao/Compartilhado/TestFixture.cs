@@ -1,10 +1,8 @@
 ﻿using DotNet.Testcontainers.Containers;
 using FizzWare.NBuilder;
-using Gestao_de_Estacionamento.Infraestrutura.Conf;
 using Gestao_de_Estacionamentos.Core.Dominio.ModuloEstacionamento;
 using Gestao_de_Estacionamentos.Core.Dominio.ModuloFaturamento;
 using Gestao_de_Estacionamentos.Core.Dominio.ModuloRecepcao;
-using Gestao_de_Estacionamentos.Core.Dominio.ModuloRecepcao.EntidadeVeiculo;
 using Gestao_de_Estacionamentos.Infraestutura.Orm.Compartilhado;
 using Gestao_de_Estacionamentos.Infraestutura.Orm.ModuloEstacionamento;
 using Gestao_de_Estacionamentos.Infraestutura.Orm.ModuloFatura;

@@ -20,7 +20,7 @@ namespace Gestao_de_Estacionamentos.Testes.Integracao.ModuloFaturamento
             decimal valorEsperado = (numeroDiarias * valorDiaria) / 100; // Convertendo para reais
 
             // Act
-            decimal valorCalculado = _repositorioFaturamento!.CalcularValorFatura(numeroDiarias, valorDiaria);
+            decimal valorCalculado = _repositorioFatura!.CalcularValorFatura(numeroDiarias, valorDiaria);
 
             // Assert
             Assert.AreEqual(valorEsperado, valorCalculado);
@@ -96,6 +96,5 @@ namespace Gestao_de_Estacionamentos.Testes.Integracao.ModuloFaturamento
             // Assert
             Assert.IsNull(faturaEncontrada);
         }
-
     }
 }

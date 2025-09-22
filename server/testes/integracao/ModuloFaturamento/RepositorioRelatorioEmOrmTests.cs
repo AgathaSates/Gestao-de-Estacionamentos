@@ -1,12 +1,11 @@
-﻿using Gestao_de_Estacionamentos.Core.Dominio.ModuloFatura;
-using Gestao_de_Estacionamentos.Core.Dominio.ModuloFaturamento;
-using Gestao_de_Estacionamentos.Core.Dominio.ModuloRecepcao.EntidadeVeiculo;
+﻿using Gestao_de_Estacionamentos.Core.Dominio.ModuloFaturamento;
 using Gestao_de_Estacionamentos.Core.Dominio.ModuloRecepcao;
-using Microsoft.EntityFrameworkCore;
+using Gestao_de_Estacionamentos.Core.Dominio.ModuloRecepcao.EntidadeVeiculo;
+using Gestao_de_Estacionamentos.Testes.Integracao.Compartilhado;
 
 namespace Gestao_de_Estacionamentos.Testes.Integracao.ModuloFaturamento
 {
-    public class RepositorioRelatorioEmOrmTests
+    public class RepositorioRelatorioEmOrmTests : TestFixture
     {
         [TestMethod]
         public async Task Deve_Cadastrar_Relatorio_Corretamente()
@@ -70,6 +69,5 @@ namespace Gestao_de_Estacionamentos.Testes.Integracao.ModuloFaturamento
             // Assert
             Assert.AreEqual(relatorioEsperado.ValorTotal, relatorioGerado.ValorTotal);
         }
-
     }
 }
