@@ -19,7 +19,6 @@ public class Program
                 .AddCamadaInfraestruturaOrm(builder.Configuration);
 
         builder.Services.AddAutoMapperProfiles(builder.Configuration);
-
         builder.Services.AddIdentityProviderConfig(builder.Configuration);
 
         builder.Services
