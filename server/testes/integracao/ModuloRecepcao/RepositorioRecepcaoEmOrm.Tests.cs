@@ -1,11 +1,6 @@
-﻿using FizzWare.NBuilder;
-using Microsoft.EntityFrameworkCore;
-using Gestao_de_Estacionamentos.Core.Dominio.ModuloRecepcao;
-using Gestao_de_Estacionamentos.Core.Dominio.ModuloRecepcao.EntidadeTicket;
+﻿using Gestao_de_Estacionamentos.Core.Dominio.ModuloRecepcao;
 using Gestao_de_Estacionamentos.Core.Dominio.ModuloRecepcao.EntidadeVeiculo;
-using Gestao_de_Estacionamentos.Infraestutura.Orm.Compartilhado;
 using Gestao_de_Estacionamentos.Testes.Integracao.Compartilhado;
-using System.Threading.Tasks;
 
 namespace Gestao_de_Estacionamentos.Testes.Integracao.ModuloRecepcao;
 
@@ -13,132 +8,180 @@ namespace Gestao_de_Estacionamentos.Testes.Integracao.ModuloRecepcao;
 [TestCategory("Testes de Integração de Recepção")]
 public class RepositorioRecepcaoEmOrm : TestFixture
 {
+    Veiculo veiculo = new Veiculo( "TEST567", "modelo", "cor", "vidro quebrado");
+    Veiculo veiculo2 = new Veiculo("OUTRA12", "modelo2", "cor2");
+    Veiculo veiculo3 = new Veiculo("VEIC789", "modelo3", "cor3", "pneu furado");
 
     [TestMethod]
-    public void Deve_Cadastrar_CheckIn_Corretamente()
+    public async Task Deve_Cadastrar_CheckIn_Corretamente()
     {
-        //Arrange
-        var veiculo = Builder<Veiculo>.CreateNew().With(v => v.Id = Guid.NewGuid()).Build();
-        var checkIn = new CheckIn(veiculo, "12345678900", "João Silva");
+        // Arrange
+        CheckIn checkIn = new CheckIn(veiculo, "11122233345", "Juninho");
 
-        //Act
+        // Act
+        await _repositorioRecepcao!.CadastrarAsync(checkIn);
+        await _dbContext!.SaveChangesAsync(); 
 
-        _repositorioRecepcao!.CadastrarAsync(checkIn).Wait();
-        _dbContext!.SaveChanges();
+        CheckIn? checkInEncontrado = await _repositorioRecepcao!
+            .SelecionarRegistroPorIdAsync(checkIn.Id);
 
-        //Assert
-        var checkInEncontrado = _repositorioRecepcao.SelecionarRegistroPorIdAsync(checkIn.Id).Result;
-
-        Assert.IsNotNull(checkInEncontrado);
+        // Assert
         Assert.AreEqual(checkIn, checkInEncontrado);
     }
 
     [TestMethod]
-    public void Deve_Editar_CheckIn_Corretamente()
+    public async Task Deve_Editar_CheckIn_Corretamente()
     {
-        //Arrange
-        var veiculo = Builder<Veiculo>.CreateNew().With(v => v.Id = Guid.NewGuid()).Build();
-        var checkIn = new CheckIn(veiculo, "12345678900", "João Silva");
+        // Arrange
+        CheckIn checkIn = new CheckIn(veiculo, "11122233345", "Juninho");
 
-        _repositorioRecepcao!.CadastrarAsync(checkIn).Wait();
-        _dbContext!.SaveChanges();
+        await _repositorioRecepcao!.CadastrarAsync(checkIn);
+        await _dbContext!.SaveChangesAsync();
+
+        CheckIn checkInEditado = new CheckIn(veiculo2, "99988877766", "Zezinho");
 
         //Act
-        checkIn.Nome = "Maria Souza";
-        _repositorioRecepcao.EditarAsync(checkIn.Id, checkIn).Wait();
-        _dbContext.SaveChanges();
+        await _repositorioRecepcao!.EditarAsync(checkIn.Id, checkInEditado);
+        await _dbContext.SaveChangesAsync();
 
-        //Assert
-        var checkInEncontrado = _repositorioRecepcao.SelecionarRegistroPorIdAsync(checkIn.Id).Result;
-        Assert.IsNotNull(checkInEncontrado);
-        Assert.AreEqual("Maria Souza", checkInEncontrado.Nome);
-    }
+        CheckIn? checkInEncontrado = await _repositorioRecepcao!
+            .SelecionarRegistroPorIdAsync(checkIn.Id);
 
-    [TestMethod]
-    public void Deve_Selecionar_CheckIn_Por_Id_Corretamente()
-    {
-        //Arrange
-        var veiculo = Builder<Veiculo>.CreateNew().With(v => v.Id = Guid.NewGuid()).Build();
-        var checkIn = new CheckIn(veiculo, "12345678900", "João Silva");
-
-        _repositorioRecepcao!.CadastrarAsync(checkIn).Wait();
-        _dbContext!.SaveChanges();
-
-        //Act
-        var checkInEncontrado = _repositorioRecepcao.SelecionarRegistroPorIdAsync(checkIn.Id).Result;
-
-        //Assert
-        Assert.IsNotNull(checkInEncontrado);
+        //Asset
         Assert.AreEqual(checkIn, checkInEncontrado);
     }
 
     [TestMethod]
-    public void Deve_Retornar_Null_Ao_Selecionar_CheckIn_Por_Id_Inexistente()
+    public async Task Deve_Selecionar_Por_Id_Corretamente()
     {
-        //Arrange
-        var idInexistente = Guid.NewGuid();
+        // Arrange
+        CheckIn checkIn = new CheckIn(veiculo, "11122233345", "Juninho");
+        await _repositorioRecepcao!.CadastrarAsync(checkIn);
+        await _dbContext!.SaveChangesAsync();
 
-        //Act
-        var generoEncontrado = _repositorioRecepcao!.SelecionarRegistroPorIdAsync(idInexistente).Result;
+        // Act
+        CheckIn? checkInEncontrado = await _repositorioRecepcao!
+            .SelecionarRegistroPorIdAsync(checkIn.Id);
 
-        //Assert
-        Assert.IsNull(generoEncontrado);
+        // Assert
+        Assert.AreEqual(checkIn, checkInEncontrado);
     }
 
     [TestMethod]
-    public void Deve_Selecionar_Todos_os_CheckIn_Corretamente()
+    public async Task Deve_Selecionar_Por_Id_Retornar_Nulo_Quando_Nao_Encontrar()
     {
-        //Arrange
-        var veiculos = Builder<Veiculo>.CreateListOfSize(3)
-             .All()
-             .With(v => v.Id = Guid.NewGuid())
-             .Build()
-             .ToList();
+        // Arrange
+        CheckIn checkIn = new CheckIn(veiculo, "11122233345", "Juninho");
 
-        var checkInsCriados = new List<CheckIn>();
+        await _repositorioRecepcao!.CadastrarAsync(checkIn);
+        await _dbContext!.SaveChangesAsync();
 
-        foreach (var veiculo in veiculos)
-        {
-            var checkIn = new CheckIn(veiculo, "12345678900", "João Silva");
+        // Act
+        CheckIn? checkInEncontrado = await _repositorioRecepcao!
+            .SelecionarRegistroPorIdAsync(Guid.NewGuid());
 
-            checkInsCriados.Add(checkIn);
-        }
-
-        checkInsCriados.OrderBy(c => c.Veiculo.Placa).ToList();
-
-        _repositorioRecepcao!.CadastrarEntidadesAsync(checkInsCriados).Wait();
-        _dbContext!.SaveChanges();
-
-        //Act
-        var checkInsEncontrados = _repositorioRecepcao.SelecionarRegistrosAsync().Result;
-
-        //Assert
-        CollectionAssert.AreEqual(checkInsCriados, checkInsEncontrados);
+        // Assert
+        Assert.IsNull(checkInEncontrado);
     }
 
     [TestMethod]
-    public async Task Deve_Persistir_Veiculo_Quando_Cadastrar()
+    public async Task Deve_Selecionar_Todos_Corretamente()
     {
-        //Arrange
-        var veiculo = Builder<Veiculo>.CreateNew().With(v => v.Id = Guid.NewGuid()).Build();
-        var checkIn = new CheckIn(veiculo, "12345678900", "João Silva");
+        // Arrange
+        CheckIn checkIn = new CheckIn(veiculo, "11122233345", "Juninho");
+        CheckIn checkIn2 = new CheckIn(veiculo2, "99988877766", "Zezinho");
+        CheckIn checkIn3 = new CheckIn(veiculo3, "55566677788", "Mariazinha");
 
-        //Act
-        _repositorioRecepcao!.CadastrarAsync(checkIn).Wait();
-        _dbContext!.SaveChanges();
+        List<CheckIn> checkInsEsperados = new List<CheckIn> { checkIn, checkIn2, checkIn3 };
+        await _repositorioRecepcao!.CadastrarEntidadesAsync(checkInsEsperados);
+        await _dbContext!.SaveChangesAsync();
 
-        using var freshDbContext = AppDbContextFactory.CriarDbContext(_container!.GetConnectionString());
+        var checkInsEsperadosOrdenados = checkInsEsperados
+            .OrderBy(c => c.Veiculo.Placa)
+            .ToList();
 
-        var veiculoExiste = await freshDbContext.Veiculos
-            .AsNoTracking()
-            .AnyAsync(v => v.Id == veiculo.Id);
+        // Act
+        var checkInsEncontrados = await _repositorioRecepcao!
+            .SelecionarRegistrosAsync();
 
-        var checkInExiste = await freshDbContext.CheckIns
-            .AsNoTracking()
-            .AnyAsync(c => c.Id == checkIn.Id);
+        // Assert
+        CollectionAssert.AreEqual(checkInsEsperadosOrdenados, checkInsEncontrados);
+    }
 
-        // Assert existência nas TABELAS
-        Assert.IsTrue(checkInExiste);
-        Assert.IsTrue(veiculoExiste);
+    [TestMethod]
+    public async Task Deve_Selecionar_Todos_Por_Quantidade_Corretamente()
+    {
+        // Arrange
+        CheckIn checkIn = new CheckIn(veiculo, "11122233345", "Juninho");
+        CheckIn checkIn2 = new CheckIn(veiculo2, "99988877766", "Zezinho");
+        CheckIn checkIn3 = new CheckIn(veiculo3, "55566677788", "Mariazinha");
+
+        List<CheckIn> checkInsEsperados = new List<CheckIn> { checkIn, checkIn2, checkIn3 };
+
+        await _repositorioRecepcao!.CadastrarEntidadesAsync(checkInsEsperados);
+        await _dbContext!.SaveChangesAsync();
+
+        var checkInsEsperadosOrdenados = checkInsEsperados
+            .OrderBy(c => c.Veiculo.Placa)
+            .Take(2)
+            .ToList();
+
+        // Act
+        var checkInsEncontrados = await _repositorioRecepcao!
+            .SelecionarRegistrosAsync(2);
+
+        // Assert
+        CollectionAssert.AreEqual(checkInsEsperadosOrdenados, checkInsEncontrados);
+    }
+
+    [TestMethod]
+    public async Task Deve_Selecionar_Veiculo_Por_Placa_Corretamente()
+    {
+        // Arrange
+        CheckIn checkIn = new CheckIn(veiculo, "11122233345", "Juninho");
+
+        await _repositorioRecepcao!.CadastrarAsync(checkIn);
+        await _dbContext!.SaveChangesAsync();
+
+        // Act
+        var veiculoEncontrado = await _repositorioRecepcao!
+            .SelecionarVeiculoPorPlaca(veiculo.Placa);
+
+        // Assert
+        Assert.AreEqual(veiculo, veiculoEncontrado);
+    }
+
+    [TestMethod]
+    public async Task Deve_Selecionar_Veiculo_Por_Placa_Retornar_Nulo_Quando_Nao_Encontrar()
+    {
+        // Arrange
+        CheckIn checkIn = new CheckIn(veiculo, "11122233345", "Juninho");
+
+        await _repositorioRecepcao!.CadastrarAsync(checkIn);
+        await _dbContext!.SaveChangesAsync();
+
+        // Act
+        var veiculoEncontrado = await _repositorioRecepcao!
+            .SelecionarVeiculoPorPlaca("PLACA123");
+
+        // Assert
+        Assert.IsNull(veiculoEncontrado);
+    }
+
+    [TestMethod]
+    public async Task Deve_Selecionar_Veiculo_Por_Numero_Do_Ticket_Corretamente()
+    {
+        // Arrange
+        CheckIn checkIn = new CheckIn(veiculo, "11122233345", "Juninho");
+
+        await _repositorioRecepcao!.CadastrarAsync(checkIn);
+        await _dbContext!.SaveChangesAsync();
+
+        // Act
+        var veiculoEncontrado = await _repositorioRecepcao!
+            .SelecionarVeiculoPorTicket(checkIn.Ticket.NumeroSequencial);
+
+        // Assert
+        Assert.AreEqual(veiculo, veiculoEncontrado);
     }
 }
