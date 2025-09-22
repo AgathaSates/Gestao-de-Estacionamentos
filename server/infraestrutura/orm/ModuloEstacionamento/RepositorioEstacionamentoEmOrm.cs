@@ -68,6 +68,7 @@ public class RepositorioEstacionamentoEmOrm(AppDbContext context)
             .IgnoreQueryFilters()
             .Where(vaga => vaga.EstaOcupada && vaga.VeiculoEstacionado != null)
             .Select(v => v.VeiculoEstacionado!)
+            .OrderBy(v => v.Placa)
             .ToListAsync();
     }
 
@@ -88,6 +89,7 @@ public class RepositorioEstacionamentoEmOrm(AppDbContext context)
             .Include(v => v.VeiculoEstacionado)
             .ThenInclude(ve => ve.CheckIn)
             .ThenInclude(ci => ci.Ticket)
+            .OrderBy(v => v.NumeroVaga)
             .ToListAsync();
     }
 
@@ -98,6 +100,7 @@ public class RepositorioEstacionamentoEmOrm(AppDbContext context)
             .Include(v => v.VeiculoEstacionado)
             .ThenInclude(ve => ve.CheckIn)
             .ThenInclude(ci => ci.Ticket)
+            .OrderBy(v => v.NumeroVaga)
             .Take(quantidade)
             .ToListAsync();
     }
