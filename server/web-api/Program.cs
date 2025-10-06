@@ -27,6 +27,7 @@ public class Program
                 options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
 
         builder.Services.AddSwaggerConfig();
+
         builder.Services.AddSwaggerGen(c =>
         {
             c.EnableAnnotations();
